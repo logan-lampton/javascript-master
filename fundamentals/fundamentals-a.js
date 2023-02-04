@@ -1,4 +1,6 @@
+//a value is the smallest unit in JS
+// 4 + 56 + 100 are three values that are combined by mathmatical operators to make one value
+// 'Logan' is a value
+
 let js = "amazing";
-if (js === "amazing") alert("JS is amazing!!!");
-let answer = 40 + 8;
-console.log(answer);
+// js is a variable assigned to the value 'amazing'
