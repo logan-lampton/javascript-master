@@ -37,3 +37,10 @@ const lastName = 'Lampton';
 console.log(firstName + ' ' + lastName);
 // assignment operators include =
 // += adds the number to the current total
+// math operators are completed before comparison operators (in general)
+
+// you can declare two empty values in one line
+//  let x, y;
+// assigment operators are run from RIGHT to left
+let x = y = 25 -10 -5
+// that equals x = 10; y = 10
