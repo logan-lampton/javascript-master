@@ -6,12 +6,31 @@ let population = 332000000;
 console.log(country, continent, population);
 
 // Data Types
-let isIsland = false;
+const isIsland = false;
 let language;
 
 console.log(
-    typeof isIsland, 
-    typeof population,
-    typeof country,
-    typeof language
+  typeof isIsland,
+  typeof population,
+  typeof country,
+  typeof language
 );
+
+// let, const and var
+language = "English";
+
+// Basic Operators
+const halfPopulation = population / 2;
+const populationPlusOne = population + 1;
+console.log(populationPlusOne);
+
+const finlandPopulation = 6000000;
+const populationComparision = population > finlandPopulation;
+console.log(populationComparision);
+
+const averageCountryPopulation = 33000000;
+const globalPopulationComparison = population > averageCountryPopulation;
+console.log(globalPopulationComparison);
+
+const description = `${country} is in ${continent}, and its ${population} people speak ${language}`;
+console.log(description);
