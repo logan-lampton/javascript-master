@@ -59,11 +59,18 @@ if (population > averageCountryPopulation) {
 // results in a number, but with a much different value than the math would be, since we added a string
 
 // Equality Operators: == vs. ===
-const numNeighbors = prompt("How many countries share a border with yours?");
-if(Number(numNeighbors) === 1) {
-  console.log("Only 1 border!");
-} else if(numNeighbors > 1) {
-  console.log("Nice, more than 1 neighbor!");
+// const numNeighbors = prompt("How many countries share a border with yours?");
+// if(Number(numNeighbors) === 1) {
+//   console.log("Only 1 border!");
+// } else if(numNeighbors > 1) {
+//   console.log("Nice, more than 1 neighbor!");
+// } else {
+//   console.log("No neighbors; so lonely!");
+// };
+
+// Logical Operators
+if(population < 50000000 && language === "English") {
+  console.log(`You should live in ${country}`);
 } else {
-  console.log("No neighbors; so lonely!");
+  console.log(`Sounds like ${country} might not be for you`);
 };

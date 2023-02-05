@@ -25,3 +25,5 @@ if (markBMI > johnBMI) {
     console.log(`Mark and John have the same BMI (${markBMI})!`)
 };
 // Instructor solution was basically the same, just not as descriptive
+
+// Coding Challenge #3

@@ -96,36 +96,59 @@ console.log(Number(inputYear) + 18);
 // NaN
 
 const money = 0;
-if(money) {
-    console.log("Don't spend it all!");
+if (money) {
+  console.log("Don't spend it all!");
 } else {
-    console.log('Get a job!');
+  console.log("Get a job!");
 }
 // 0 is converted to false
 
 let height;
-if(height) {
-    console.log("Yay! Height is defined!");
+if (height) {
+  console.log("Yay! Height is defined!");
 } else {
-    console.log("Height is undefined");
-};
+  console.log("Height is undefined");
+}
 
 // Equality Operators: == vs. ===
 
 // === is the strict equality operator
 //  == is the loose equality operator and it makes type coercion
-const myAge = '18'
+const myAge = "18";
 // strict
-if(myAge === 18){
-    console.log("You're now an adult!")
-};
+if (myAge === 18) {
+  console.log("You're now an adult!");
+}
 // loose
-if(myAge == 18) {
-    console.log("You're now an adult!")
-};
+if (myAge == 18) {
+  console.log("You're now an adult!");
+}
 // YOU SHOULD ALWAYS USE THE STRICT EQUALITY OPERATOR to avoid bugs
 
 // const favorite = prompt("What's your favorite number?");
 // if(favorite == 23){
 //     console.log("Cool! 23 is a great number!")
 // };
+
+// Boolean Logic
+// CS boolean logic is the same for all programing languages
+// EX: Sarah has a driver's license AND good vision
+// AND requires both variables to be true
+// EX: Sarah has a driver's license OR good vision
+// OR is true even if just one variable is true
+
+// Logical Operators
+const hasDriversLicense = true;
+const hasGoodVision = false;
+// hasDriversLicense && hasGoodVision = false;
+// hasDriversLicense || hasGoodVision = true;
+// !hasDriversLicense = false;
+const isTired = false;
+
+const shouldDrive = hasDriversLicense && hasGoodVision && !isTired;
+if (shouldDrive) {
+  console.log("Sarah should drive");
+} else {
+  console.log("...Someone else should drive");
+}
+
