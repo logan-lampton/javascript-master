@@ -77,4 +77,10 @@ if (yearBorn <= 2000) {
 } else {
     century = 21;
 };
-console.log(century);
+// console.log(century);
+
+// Type Conversion and Coercion
+const inputYear = '1989';
+console.log(Number(inputYear) + 18);
+// Number() can make a string of numbers in a number value
+// String() can make numbers into a string

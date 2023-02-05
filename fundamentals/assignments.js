@@ -45,3 +45,5 @@ if (population > averageCountryPopulation) {
     } less than the global average.`
   );
 }
+
+// Type Conversion and Coercion
