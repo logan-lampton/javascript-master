@@ -32,9 +32,9 @@ const birthYear = 1988;
 // includes all mathematic operators
 // 2 ** 3 is 2 to the power of 3
 // + can be used to concatonate strings
-const firstName = 'Logan';
-const lastName = 'Lampton';
-console.log(firstName + ' ' + lastName);
+const firstName = "Logan";
+const lastName = "Lampton";
+console.log(firstName + " " + lastName);
 // assignment operators include =
 // += adds the number to the current total
 // math operators are completed before comparison operators (in general)
@@ -42,5 +42,39 @@ console.log(firstName + ' ' + lastName);
 // you can declare two empty values in one line
 //  let x, y;
 // assigment operators are run from RIGHT to left
-let x = y = 25 -10 -5
+let x = (y = 25 - 10 - 5);
 // that equals x = 10; y = 10
+
+// Strings and Template Literals
+const job = "software engineer";
+const year = 2023;
+const logan =
+  "I'm " + firstName + ", a " + (year - birthYear) + " year-old " + job;
+console.log(logan);
+// template literals are way better (and newer than) concatonating
+const loganBetter = `I'm ${firstName}, a ${year - birthYear} year-old ${job}`;
+// can make multi-line strings with backticks
+console.log(`String
+with
+multiple
+lines`);
+
+// If/Else Statements
+// a control structure
+const drivingAge = 15;
+if (drivingAge >= 16) {
+  console.log(`Apply for a driver's license!`);
+} else {
+  console.log(`Sorry, you have to be at least 16 years old. Please apply in ${
+    16 - drivingAge
+  } years.`);
+};
+
+const yearBorn = 1991;
+let century;
+if (yearBorn <= 2000) {
+    century = 20;
+} else {
+    century = 21;
+};
+console.log(century);
