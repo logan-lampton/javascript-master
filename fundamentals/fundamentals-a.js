@@ -65,22 +65,67 @@ const drivingAge = 15;
 if (drivingAge >= 16) {
   console.log(`Apply for a driver's license!`);
 } else {
-  console.log(`Sorry, you have to be at least 16 years old. Please apply in ${
-    16 - drivingAge
-  } years.`);
-};
+  console.log(
+    `Sorry, you have to be at least 16 years old. Please apply in ${
+      16 - drivingAge
+    } years.`
+  );
+}
 
 const yearBorn = 1991;
 let century;
 if (yearBorn <= 2000) {
-    century = 20;
+  century = 20;
 } else {
-    century = 21;
-};
+  century = 21;
+}
 // console.log(century);
 
 // Type Conversion and Coercion
-const inputYear = '1989';
+const inputYear = "1989";
 console.log(Number(inputYear) + 18);
 // Number() can make a string of numbers in a number value
 // String() can make numbers into a string
+
+// Truthy and Falsy Values
+// There are only 5 falsy values:
+// 0
+// ''
+// undefined
+// null
+// NaN
+
+const money = 0;
+if(money) {
+    console.log("Don't spend it all!");
+} else {
+    console.log('Get a job!');
+}
+// 0 is converted to false
+
+let height;
+if(height) {
+    console.log("Yay! Height is defined!");
+} else {
+    console.log("Height is undefined");
+};
+
+// Equality Operators: == vs. ===
+
+// === is the strict equality operator
+//  == is the loose equality operator and it makes type coercion
+const myAge = '18'
+// strict
+if(myAge === 18){
+    console.log("You're now an adult!")
+};
+// loose
+if(myAge == 18) {
+    console.log("You're now an adult!")
+};
+// YOU SHOULD ALWAYS USE THE STRICT EQUALITY OPERATOR to avoid bugs
+
+// const favorite = prompt("What's your favorite number?");
+// if(favorite == 23){
+//     console.log("Cool! 23 is a great number!")
+// };
