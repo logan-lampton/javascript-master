@@ -47,3 +47,15 @@ if (population > averageCountryPopulation) {
 }
 
 // Type Conversion and Coercion
+"9" - "5";
+// results in a number due to -
+"19" - "13" + "17";
+// results in a string due to +
+"19" - "13" + 17;
+// results in a number, since the + is adding a number
+"123" < 57;
+// results in false, since a string is lower in numrical value than 57
+5 + 6 + "4" + 9 - 4 - 2;
+// results in a number, but with a much different value than the math would be, since we added a string
+
+// Equality Operators: == vs. ===
