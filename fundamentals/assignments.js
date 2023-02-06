@@ -74,3 +74,5 @@ if(population < 50000000 && language === "English") {
 } else {
   console.log(`Sounds like ${country} might not be for you`);
 };
+
+// The Switch Statement

@@ -152,3 +152,44 @@ if (shouldDrive) {
   console.log("...Someone else should drive");
 }
 
+// The Switch Statement
+const day = "Monday";
+switch (day) {
+  case "Monday":
+    console.log("Go to coding meetup");
+    break;
+  case "Tuesday":
+    console.log("Study algorithms");
+    break;
+  case "Wednesday":
+  case "Thursday":
+    console.log("Deep dive into JavaScript");
+    break;
+  case "Friday":
+    console.log("Apply to a job");
+    break;
+  case "Saturday":
+  case "Sunday":
+    console.log("Enjoy the weekend! ...but still code");
+    break;
+  default:
+    console.log("Please add a valid day of the week");
+}
+// Without the break, the code continues running, so you NEED to add breaks
+// Strict comparison
+
+// same logic as an if/else statement
+const ifElseDay = "Monday";
+if (ifElseDay === "Monday") {
+  console.log("Go to coding meetup");
+} else if (ifElseDay === "Tuesday") {
+  console.log("Study algorithms");
+} else if (ifElseDay === "Wednesday" || "Thursday") {
+  console.log("Deep dive into JavaScript");
+} else if (ifElseDay === "Friday") {
+  console.log("Apply to a job");
+} else if (ifElseDay === "Saturday" || "Sunday") {
+  console.log("Enjoy the weekend! ...but still code");
+} else {
+  console.log("Please add a valid day of the week");
+}
