@@ -76,3 +76,24 @@ if(population < 50000000 && language === "English") {
 };
 
 // The Switch Statement
+switch(language) {
+  case "Chinese":
+  case "Mandarin":
+    console.log("Most spoken language in the world!");
+  break;
+  case "Spanish":
+    console.log("Second most spoken language!");
+  break;
+  case "English":
+    console.log("Third most spoken language!");
+  break;
+  case "Hindi":
+    console.log("Fourth most spoken language!");
+  break;
+  case "Arabic":
+    console.log("Fifth most spoken language!");
+  break;
+  default:
+    console.log("That's a nice language :-)");
+  break;
+};

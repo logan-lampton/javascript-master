@@ -34,7 +34,8 @@ const birthYear = 1988;
 // + can be used to concatonate strings
 const firstName = "Logan";
 const lastName = "Lampton";
-console.log(firstName + " " + lastName);
+// console.log(firstName + " " + lastName);
+
 // assignment operators include =
 // += adds the number to the current total
 // math operators are completed before comparison operators (in general)
@@ -50,7 +51,7 @@ const job = "software engineer";
 const year = 2023;
 const logan =
   "I'm " + firstName + ", a " + (year - birthYear) + " year-old " + job;
-console.log(logan);
+// console.log(logan);
 // template literals are way better (and newer than) concatonating
 const loganBetter = `I'm ${firstName}, a ${year - birthYear} year-old ${job}`;
 // can make multi-line strings with backticks
@@ -63,13 +64,13 @@ lines`);
 // a control structure
 const drivingAge = 15;
 if (drivingAge >= 16) {
-  console.log(`Apply for a driver's license!`);
+//   console.log(`Apply for a driver's license!`);
 } else {
-  console.log(
-    `Sorry, you have to be at least 16 years old. Please apply in ${
-      16 - drivingAge
-    } years.`
-  );
+//   console.log(
+//     `Sorry, you have to be at least 16 years old. Please apply in ${
+//       16 - drivingAge
+//     } years.`
+//   );
 }
 
 const yearBorn = 1991;
@@ -83,7 +84,8 @@ if (yearBorn <= 2000) {
 
 // Type Conversion and Coercion
 const inputYear = "1989";
-console.log(Number(inputYear) + 18);
+// console.log(Number(inputYear) + 18);
+
 // Number() can make a string of numbers in a number value
 // String() can make numbers into a string
 
@@ -97,17 +99,17 @@ console.log(Number(inputYear) + 18);
 
 const money = 0;
 if (money) {
-  console.log("Don't spend it all!");
+//   console.log("Don't spend it all!");
 } else {
-  console.log("Get a job!");
+//   console.log("Get a job!");
 }
 // 0 is converted to false
 
 let height;
 if (height) {
-  console.log("Yay! Height is defined!");
+//   console.log("Yay! Height is defined!");
 } else {
-  console.log("Height is undefined");
+//   console.log("Height is undefined");
 }
 
 // Equality Operators: == vs. ===
@@ -117,11 +119,11 @@ if (height) {
 const myAge = "18";
 // strict
 if (myAge === 18) {
-  console.log("You're now an adult!");
+//   console.log("You're now an adult!");
 }
 // loose
 if (myAge == 18) {
-  console.log("You're now an adult!");
+//   console.log("You're now an adult!");
 }
 // YOU SHOULD ALWAYS USE THE STRICT EQUALITY OPERATOR to avoid bugs
 
@@ -147,13 +149,14 @@ const isTired = false;
 
 const shouldDrive = hasDriversLicense && hasGoodVision && !isTired;
 if (shouldDrive) {
-  console.log("Sarah should drive");
+//   console.log("Sarah should drive");
 } else {
-  console.log("...Someone else should drive");
+//   console.log("...Someone else should drive");
 }
 
 // The Switch Statement
-const day = "Monday";
+const day = "Monkeyday";
+
 switch (day) {
   case "Monday":
     console.log("Go to coding meetup");
@@ -179,16 +182,15 @@ switch (day) {
 // Strict comparison
 
 // same logic as an if/else statement
-const ifElseDay = "Monday";
-if (ifElseDay === "Monday") {
+if (day === "Monday") {
   console.log("Go to coding meetup");
-} else if (ifElseDay === "Tuesday") {
+} else if (day === "Tuesday") {
   console.log("Study algorithms");
-} else if (ifElseDay === "Wednesday" || "Thursday") {
+} else if (day === "Wednesday" || day === "Thursday") {
   console.log("Deep dive into JavaScript");
-} else if (ifElseDay === "Friday") {
+} else if (day === "Friday") {
   console.log("Apply to a job");
-} else if (ifElseDay === "Saturday" || "Sunday") {
+} else if (day === "Saturday" || day === "Sunday") {
   console.log("Enjoy the weekend! ...but still code");
 } else {
   console.log("Please add a valid day of the week");
