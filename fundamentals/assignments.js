@@ -1,3 +1,5 @@
+console.log("---------------------------------------");
+
 // Values and Variables
 const country = "USA";
 const continent = "North America";
@@ -97,3 +99,5 @@ switch(language) {
     console.log("That's a nice language :-)");
   break;
 };
+
+// The Conditional (Ternary) Operator

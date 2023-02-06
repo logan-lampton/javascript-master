@@ -64,13 +64,13 @@ lines`);
 // a control structure
 const drivingAge = 15;
 if (drivingAge >= 16) {
-//   console.log(`Apply for a driver's license!`);
+  //   console.log(`Apply for a driver's license!`);
 } else {
-//   console.log(
-//     `Sorry, you have to be at least 16 years old. Please apply in ${
-//       16 - drivingAge
-//     } years.`
-//   );
+  //   console.log(
+  //     `Sorry, you have to be at least 16 years old. Please apply in ${
+  //       16 - drivingAge
+  //     } years.`
+  //   );
 }
 
 const yearBorn = 1991;
@@ -99,17 +99,17 @@ const inputYear = "1989";
 
 const money = 0;
 if (money) {
-//   console.log("Don't spend it all!");
+  //   console.log("Don't spend it all!");
 } else {
-//   console.log("Get a job!");
+  //   console.log("Get a job!");
 }
 // 0 is converted to false
 
 let height;
 if (height) {
-//   console.log("Yay! Height is defined!");
+  //   console.log("Yay! Height is defined!");
 } else {
-//   console.log("Height is undefined");
+  //   console.log("Height is undefined");
 }
 
 // Equality Operators: == vs. ===
@@ -119,11 +119,11 @@ if (height) {
 const myAge = "18";
 // strict
 if (myAge === 18) {
-//   console.log("You're now an adult!");
+  //   console.log("You're now an adult!");
 }
 // loose
 if (myAge == 18) {
-//   console.log("You're now an adult!");
+  //   console.log("You're now an adult!");
 }
 // YOU SHOULD ALWAYS USE THE STRICT EQUALITY OPERATOR to avoid bugs
 
@@ -149,9 +149,9 @@ const isTired = false;
 
 const shouldDrive = hasDriversLicense && hasGoodVision && !isTired;
 if (shouldDrive) {
-//   console.log("Sarah should drive");
+  //   console.log("Sarah should drive");
 } else {
-//   console.log("...Someone else should drive");
+  //   console.log("...Someone else should drive");
 }
 
 // The Switch Statement
@@ -195,3 +195,26 @@ if (day === "Monday") {
 } else {
   console.log("Please add a valid day of the week");
 }
+
+// Expressions
+
+// Expressions result in a value, Exs:
+// 3 + 4 is an expression
+// 1991 is an expression
+// Boolean values are expressions:
+// true && false & !false
+// A string is an expression
+
+// A statment is like a sentence, compared to expressions, being like words in the sentence
+// statements declare the action that we want the program to execute
+
+// in a template literal, only expressions can be included, not a statement
+
+// The Conditional (Ternary) Operator
+const thisAge = 23;
+const adult = thisAge >= 18 ? 'Adult 👨‍🦳' : 'Kid 👶';
+console.log(adult);
+// windows + . can insert emojis, it's awesome!
+
+// Ternary operators CAN be used in a template literal
+console.log(`I am a ${thisAge >= 18 ? 'Adult 👨‍🦳' : 'Kid 👶'}`);

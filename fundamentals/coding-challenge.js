@@ -43,16 +43,30 @@ if (dolphinsAverageScore > koalasAverageScore) {
   console.log(`Koalas won with an average score of ${koalasAverageScore}!`);
 } else {
   console.log(`It was a tie, with an average score of ${dolphinsAverageScore}`);
-};
+}
 // Bonus 1 mixed with Bonus 2
 const dolphinsBonusOne = (97 + 112 + 101) / 3;
 const koalasBonusOne = (109 + 95 + 106) / 3;
 if (dolphinsBonusOne > koalasBonusOne && dolphinsBonusOne >= 100) {
-    console.log(`Dolphins won with an average score of ${dolphinsBonusOne}!`);
-  } else if (koalasBonusOne > dolphinsBonusOne && koalasBonusOne >= 100) {
-    console.log(`Koalas won with an average score of ${koalasBonusOne}!`);
-  } else if (koalasBonusOne === dolphinsBonusOne && koalasBonusOne >= 100 && dolphinsBonusOne >= 100) {
-    console.log("Wow, it's a tie!")
-  } else {
-    console.log("BOTH LOSE!!!");
-  };
+  console.log(`Dolphins won with an average score of ${dolphinsBonusOne}!`);
+} else if (koalasBonusOne > dolphinsBonusOne && koalasBonusOne >= 100) {
+  console.log(`Koalas won with an average score of ${koalasBonusOne}!`);
+} else if (
+  koalasBonusOne === dolphinsBonusOne &&
+  koalasBonusOne >= 100 &&
+  dolphinsBonusOne >= 100
+) {
+  console.log("Wow, it's a tie!");
+} else {
+  console.log("BOTH LOSE!!!");
+}
+
+// Coding Challenge #4
+// tip 15% if value is $50-300
+// other values are 20%
+// create a variable called 'tip'
+// print: `The bill was 275, the tip was 41.25, and the total value was 316.25`
+
+let bill = 250;
+const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+console.log(`The bill was ${bill} the tip was ${tip}, and the total value was ${bill + tip}`);
