@@ -101,3 +101,5 @@ switch(language) {
 };
 
 // The Conditional (Ternary) Operator
+const populationTernary = population > 33000000 ? "above average population" : "below average population";
+console.log(`${country} has ${populationTernary}`);
