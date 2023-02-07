@@ -16,24 +16,32 @@ function percentageOfWorld1(population) {
   return (population / 7900) * 100;
 }
 const chinaPopulation = percentageOfWorld1(1441);
-const usaPopulation = percentageOfWorld1(1408);
-const indiaPopulation = percentageOfWorld1(332);
-console.log(chinaPopulation, usaPopulation, indiaPopulation);
+const indiaPopulation = percentageOfWorld1(1408);
+const usaPopulation = percentageOfWorld1(332);
+console.log(chinaPopulation, indiaPopulation, usaPopulation);
 
 // function expression example
 const percentageOfWorld2 = function (population) {
   return (population / 7900) * 100;
 };
 const chinaPopulation2 = percentageOfWorld2(1441);
-const usaPopulation2 = percentageOfWorld2(1408);
-const indiaPopulation2 = percentageOfWorld2(332);
-console.log(chinaPopulation2, usaPopulation2, indiaPopulation2);
+const indiaPopulation2 = percentageOfWorld2(1408);
+const usaPopulation2 = percentageOfWorld2(332);
+console.log(chinaPopulation2, indiaPopulation2, usaPopulation2);
 
 // Arrow Functions
 const percentageOfWorld3 = (population) => (population / 7900) * 100;
 const chinaPopulation3 = percentageOfWorld3(1441);
-const usaPopulation3 = percentageOfWorld3(1408);
-const indiaPopulation3 = percentageOfWorld3(332);
-console.log(chinaPopulation3, usaPopulation3, indiaPopulation3);
+const indiaPopulation3 = percentageOfWorld3(1408);
+const usaPopulation3 = percentageOfWorld3(332);
+console.log(chinaPopulation3, indiaPopulation3, usaPopulation3);
 
 // Functions Calling Other Functions
+function describePopulation(country, population) {
+    const percent = percentageOfWorld1(population);
+    return `${country} has ${population} million people, which is about ${percent} of the world`;
+};
+const chinaPopulation4 = describePopulation("China", 1441)
+const indiaPopulation4 = describePopulation("India", 1408);
+const usaPopulation4 = describePopulation("United States of America", 332);
+console.log(chinaPopulation4, indiaPopulation4, usaPopulation4);

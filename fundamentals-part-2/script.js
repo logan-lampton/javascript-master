@@ -8,7 +8,7 @@ function remainingStudyTime(remainingTime, lessonTime) {
   const spedUp = beforeSpedUp / 1.5;
   return spedUp / 60;
 }
-const timeTilParty = `Party in ${remainingStudyTime(232, 10)} hours, friends!`;
+const timeTilParty = `Party in ${remainingStudyTime(222, 10)} hours, friends!`;
 console.log(timeTilParty);
 
 // Functions
@@ -58,3 +58,17 @@ const yearsUntilRetirement = (birthYear, firstName) => {
 console.log(yearsUntilRetirement(1988, "Logan"));
 
 // Functions Calling Other Functions
+function cutFruitPieces(fruit) {
+  return fruit * 4;
+}
+
+function fruitProcessor2(apples, oranges) {
+  const applePieces = cutFruitPieces(apples);
+  const orangePieces = cutFruitPieces(oranges);
+  const juice = `The juice includes ${applePieces} pieces of apples and ${orangePieces} pieces of oranges`;
+  return juice;
+}
+
+const appleAndOrangeJuice = fruitProcessor2(2, 3);
+console.log(appleAndOrangeJuice);
+
