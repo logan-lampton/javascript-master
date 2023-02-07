@@ -4,10 +4,11 @@
 // My time remaining function
 function remainingStudyTime(remainingTime, lessonTime) {
   const beforeSpedUp = remainingTime - lessonTime;
+  console.log(beforeSpedUp);
   const spedUp = beforeSpedUp / 1.5;
   return spedUp / 60;
 }
-const timeTilParty = `Party in ${remainingStudyTime(243, 11)} hours, friends!`;
+const timeTilParty = `Party in ${remainingStudyTime(232, 10)} hours, friends!`;
 console.log(timeTilParty);
 
 // Functions
@@ -40,6 +41,20 @@ const calcAge2 = function (birthYear) {
   return 2023 - birthYear;
 };
 // a function is a value, so we can store it as a variable
-
 const age2 = calcAge2(1996);
-console.log(age1, age2);
+
+// Arrow Function
+// implicit return
+const calcAge3 = (birthYear) => 2023 - birthYear;
+const age3 = calcAge3(1992);
+console.log(age1, age2, age3);
+
+// even with an arrow function, we need to write return if the code block is more than one line
+const yearsUntilRetirement = (birthYear, firstName) => {
+  const age = 2023 - birthYear;
+  const retirement = 65 - age;
+  return `${firstName} can retire in ${retirement} years`;
+};
+console.log(yearsUntilRetirement(1988, "Logan"));
+
+// Functions Calling Other Functions

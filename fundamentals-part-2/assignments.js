@@ -13,19 +13,27 @@ console.log(america);
 // Function Declarations vs. Expressions
 // function declaration example
 function percentageOfWorld1(population) {
-    return population / 7900 * 100;
-};
+  return (population / 7900) * 100;
+}
 const chinaPopulation = percentageOfWorld1(1441);
 const usaPopulation = percentageOfWorld1(1408);
 const indiaPopulation = percentageOfWorld1(332);
 console.log(chinaPopulation, usaPopulation, indiaPopulation);
 
 // function expression example
-const percentageOfWorld2 = function(population) {
-    return population / 7900 * 100;
+const percentageOfWorld2 = function (population) {
+  return (population / 7900) * 100;
 };
 const chinaPopulation2 = percentageOfWorld2(1441);
 const usaPopulation2 = percentageOfWorld2(1408);
 const indiaPopulation2 = percentageOfWorld2(332);
 console.log(chinaPopulation2, usaPopulation2, indiaPopulation2);
 
+// Arrow Functions
+const percentageOfWorld3 = (population) => (population / 7900) * 100;
+const chinaPopulation3 = percentageOfWorld3(1441);
+const usaPopulation3 = percentageOfWorld3(1408);
+const indiaPopulation3 = percentageOfWorld3(332);
+console.log(chinaPopulation3, usaPopulation3, indiaPopulation3);
+
+// Functions Calling Other Functions
