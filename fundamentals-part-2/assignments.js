@@ -45,3 +45,5 @@ const chinaPopulation4 = describePopulation("China", 1441)
 const indiaPopulation4 = describePopulation("India", 1408);
 const usaPopulation4 = describePopulation("United States of America", 332);
 console.log(chinaPopulation4, indiaPopulation4, usaPopulation4);
+
+// Introduction to Arrays

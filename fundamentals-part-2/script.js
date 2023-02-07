@@ -8,7 +8,7 @@ function remainingStudyTime(remainingTime, lessonTime) {
   const spedUp = beforeSpedUp / 1.5;
   return spedUp / 60;
 }
-const timeTilParty = `Party in ${remainingStudyTime(222, 10)} hours, friends!`;
+const timeTilParty = `Party in ${remainingStudyTime(212, 16)} hours, friends!`;
 console.log(timeTilParty);
 
 // Functions
@@ -55,7 +55,7 @@ const yearsUntilRetirement = (birthYear, firstName) => {
   const retirement = 65 - age;
   return `${firstName} can retire in ${retirement} years`;
 };
-console.log(yearsUntilRetirement(1988, "Logan"));
+// console.log(yearsUntilRetirement(1988, "Logan"));
 
 // Functions Calling Other Functions
 function cutFruitPieces(fruit) {
@@ -72,3 +72,18 @@ function fruitProcessor2(apples, oranges) {
 const appleAndOrangeJuice = fruitProcessor2(2, 3);
 console.log(appleAndOrangeJuice);
 
+// Introduction to Arrays
+const calcAge = function (birthYear) {
+  return 2023 - birthYear;
+};
+// The return statement automatically exits the function, so ignores anything after it!
+const yearsUntilRetirement2 = function (birthYear, firstName) {
+  const age = calcAge(birthYear);
+  const retirement = 65 - age;
+  if (retirement > 0) {
+    return `${firstName} can retire in ${retirement} years`;
+  } else {
+    return "Hey, you should retire right now!";
+  }
+};
+console.log(yearsUntilRetirement2(1988, "Logan"));
