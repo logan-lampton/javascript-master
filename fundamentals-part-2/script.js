@@ -8,7 +8,7 @@ function remainingStudyTime(remainingTime, lessonTime) {
   const spedUp = beforeSpedUp / 1.5;
   return spedUp / 60;
 }
-const timeTilParty = `Party in ${remainingStudyTime(212, 16)} hours, friends!`;
+const timeTilParty = `Party in ${remainingStudyTime(196, 18)} hours, friends!`;
 console.log(timeTilParty);
 
 // Functions
