@@ -31,8 +31,8 @@ console.log(calcAverage(85, 54, 41, 23, 34, 27));
 // ...which is better haha
 const calculateAverage = (a, b, c) => (a + b + c) / 3;
 
-const scoreDolphins = calculateAverage(44, 23, 71);
-const scoreKoalas = calculateAverage(65, 54, 49);
+let scoreDolphins = calculateAverage(44, 23, 71);
+let scoreKoalas = calculateAverage(65, 54, 49);
 
 const confirmWinner = function (avgDolphins, avgKoalas) {
   if (avgDolphins >= 2 * avgKoalas) {
@@ -43,5 +43,11 @@ const confirmWinner = function (avgDolphins, avgKoalas) {
     console.log(`No one wins`);
   }
 };
+// Test 1
+confirmWinner(scoreDolphins, scoreKoalas);
 
+// Test 2
+// reassign the values
+scoreDolphins = calculateAverage(85, 54, 41);
+scoreKoalas = calculateAverage(23, 34, 27);
 confirmWinner(scoreDolphins, scoreKoalas);
