@@ -8,7 +8,7 @@ function remainingStudyTime(remainingTime, lessonTime) {
   const spedUp = beforeSpedUp / 1.5;
   return spedUp / 60;
 }
-const timeTilParty = `Party in ${remainingStudyTime(178, 22)} hours, friends!`;
+const timeTilParty = `Party in ${remainingStudyTime(156, 13)} hours, friends!`;
 console.log(timeTilParty);
 // ----------------------------------------------------------------------------
 
@@ -97,22 +97,22 @@ console.log(yearsUntilRetirement2(1988, "Logan"));
 // Introduction to Arrays
 // most common way to create an array; called the literal syntax
 const friends = ["Michael", "Steven", "Peter"];
-console.log(friends);
+// console.log(friends);
 
 // can also use new Array() to create an array
 const years = new Array(1988, 1991, 1996);
-console.log(years);
+// console.log(years);
 
-// syntax to call a specific element from the array
-console.log(friends[0]);
-// syntax to show the number of elements in the array
-console.log(friends.length);
-// to grab the last element in the array, no matter the length
-console.log(friends[friends.length - 1]);
+// // syntax to call a specific element from the array
+// console.log(friends[0]);
+// // syntax to show the number of elements in the array
+// console.log(friends.length);
+// // to grab the last element in the array, no matter the length
+// console.log(friends[friends.length - 1]);
 
-// to change a value in the array
-friends[2] = "Jay";
-console.log(friends);
+// // to change a value in the array
+// friends[2] = "Jay";
+// console.log(friends);
 // array can be mutated, be we can't replace the entire array
 
 const firstName = "Jonas";
@@ -121,7 +121,7 @@ const jonas = [firstName, "Schmedtmann", 2023 - 1991, "teacher", friends];
 console.log(jonas);
 
 const calcNewAge = function (birthYear) {
-    return 2023 - birthYear;
+  return 2023 - birthYear;
 };
 const yearsNewAge = [1990, 1967, 2002, 2010, 2018];
 
@@ -131,7 +131,33 @@ const yearsAge3 = calcNewAge(yearsNewAge[2]);
 console.log(yearsAge1, yearsAge2, yearsAge3);
 
 // We can place function calls inside of an array
-const updatedAges = [calcNewAge(yearsNewAge[0]), calcNewAge(yearsNewAge[1]), calcNewAge(yearsNewAge[yearsNewAge.length - 1])];
+const updatedAges = [
+  calcNewAge(yearsNewAge[0]),
+  calcNewAge(yearsNewAge[1]),
+  calcNewAge(yearsNewAge[yearsNewAge.length - 1]),
+];
 console.log(updatedAges);
+// ----------------------------------------------------------------------------
 
+// Basic Array Operations (Methods)
+// friends array within this doc: const friends = ["Michael", "Steven", "Peter"];
+// .push to add to the end
+friends.push("Jay");
+// .unshift to add to the front
+friends.unshift("John");
+// pop removes the last element
+const popped = friends.pop();
+// if you save the .pop as a variable, it will return the element that you popped
+console.log(popped);
+// .shift removes the first element in the array
+console.log(friends);
+// you can return the index of the element in the array like so:
+console.log(friends.indexOf("Debra"));
+// if you ask for an indexOf something not in the array the result is -1
+// .includes returns either true or false depending on if the element is in the array; uses strict equality
+console.log(friends.includes("Steven"));
+
+if(friends.includes("Peter")) {
+  console.log(`You have a friend named Peter!`);
+};
 // ----------------------------------------------------------------------------

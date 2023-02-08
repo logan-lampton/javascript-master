@@ -61,5 +61,15 @@ const percentages = [
   percentageOfWorld1(populations[3]),
 ];
 console.log(percentages);
+// ----------------------------------------------------------------------------
 
+// Basic Array Operations (Methods)
+const neighbors = ["Canada", "Mexico", "Bahamas", "Cuba"];
+neighbors.push("Utopia");
+neighbors.pop();
+if(!neighbors.includes("Germany")) {
+  console.log("Probably not a central European country :D");
+};
+neighbors[neighbors.indexOf("Cuba")] = "Super Cuba";
+console.log(neighbors);
 // ----------------------------------------------------------------------------
