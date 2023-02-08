@@ -8,8 +8,9 @@ function remainingStudyTime(remainingTime, lessonTime) {
   const spedUp = beforeSpedUp / 1.5;
   return spedUp / 60;
 }
-const timeTilParty = `Party in ${remainingStudyTime(196, 18)} hours, friends!`;
+const timeTilParty = `Party in ${remainingStudyTime(178, 22)} hours, friends!`;
 console.log(timeTilParty);
+// ----------------------------------------------------------------------------
 
 // Functions
 function logger() {
@@ -29,6 +30,7 @@ const appleJuice = fruitProcessor(3, 5);
 console.log(appleJuice);
 
 // be DRY - "Don't Repeat Yourself"
+// ----------------------------------------------------------------------------
 
 // Function Declarations vs. Expressions
 function calcAge1(birthYear) {
@@ -42,6 +44,7 @@ const calcAge2 = function (birthYear) {
 };
 // a function is a value, so we can store it as a variable
 const age2 = calcAge2(1996);
+// ----------------------------------------------------------------------------
 
 // Arrow Function
 // implicit return
@@ -56,6 +59,7 @@ const yearsUntilRetirement = (birthYear, firstName) => {
   return `${firstName} can retire in ${retirement} years`;
 };
 // console.log(yearsUntilRetirement(1988, "Logan"));
+// ----------------------------------------------------------------------------
 
 // Functions Calling Other Functions
 function cutFruitPieces(fruit) {
@@ -71,8 +75,9 @@ function fruitProcessor2(apples, oranges) {
 
 const appleAndOrangeJuice = fruitProcessor2(2, 3);
 console.log(appleAndOrangeJuice);
+// ----------------------------------------------------------------------------
 
-// Introduction to Arrays
+// Functions Review
 const calcAge = function (birthYear) {
   return 2023 - birthYear;
 };
@@ -87,3 +92,46 @@ const yearsUntilRetirement2 = function (birthYear, firstName) {
   }
 };
 console.log(yearsUntilRetirement2(1988, "Logan"));
+// ----------------------------------------------------------------------------
+
+// Introduction to Arrays
+// most common way to create an array; called the literal syntax
+const friends = ["Michael", "Steven", "Peter"];
+console.log(friends);
+
+// can also use new Array() to create an array
+const years = new Array(1988, 1991, 1996);
+console.log(years);
+
+// syntax to call a specific element from the array
+console.log(friends[0]);
+// syntax to show the number of elements in the array
+console.log(friends.length);
+// to grab the last element in the array, no matter the length
+console.log(friends[friends.length - 1]);
+
+// to change a value in the array
+friends[2] = "Jay";
+console.log(friends);
+// array can be mutated, be we can't replace the entire array
+
+const firstName = "Jonas";
+// arrays can contain variables and even other arrays
+const jonas = [firstName, "Schmedtmann", 2023 - 1991, "teacher", friends];
+console.log(jonas);
+
+const calcNewAge = function (birthYear) {
+    return 2023 - birthYear;
+};
+const yearsNewAge = [1990, 1967, 2002, 2010, 2018];
+
+const yearsAge1 = calcNewAge(yearsNewAge[0]);
+const yearsAge2 = calcNewAge(yearsNewAge[1]);
+const yearsAge3 = calcNewAge(yearsNewAge[2]);
+console.log(yearsAge1, yearsAge2, yearsAge3);
+
+// We can place function calls inside of an array
+const updatedAges = [calcNewAge(yearsNewAge[0]), calcNewAge(yearsNewAge[1]), calcNewAge(yearsNewAge[yearsNewAge.length - 1])];
+console.log(updatedAges);
+
+// ----------------------------------------------------------------------------

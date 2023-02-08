@@ -25,7 +25,7 @@ function calcAverage(
 console.log(calcAverage(44, 23, 71, 65, 54, 49));
 console.log(calcAverage(85, 54, 41, 23, 34, 27));
 
-// ------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 // Instructor's Solution
 // ...which is better haha
@@ -51,3 +51,4 @@ confirmWinner(scoreDolphins, scoreKoalas);
 scoreDolphins = calculateAverage(85, 54, 41);
 scoreKoalas = calculateAverage(23, 34, 27);
 confirmWinner(scoreDolphins, scoreKoalas);
+// ----------------------------------------------------------------------------
