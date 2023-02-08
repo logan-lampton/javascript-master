@@ -80,15 +80,44 @@ const myCountry = {
   capital: "Washington DC",
   language: "English",
   population: 331.9,
-  neighbors: ["Canada", "Mexico", "Bahamas", "Cuba"]
+  neighbors: ["Canada", "Mexico", "Bahamas", "Cuba"],
+  describe: function() {
+    console.log(`${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbors.length} neighboring countries, and a capital named ${this.capital}.`)
+  },
+  checkIsland: function() {
+    this.isIsland = this.neighbors.length === 0 ? true : false;
+  }
 };
 
 // ----------------------------------------------------------------------------
 
 // Dot vs. Bracket Notation
-console.log(`${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbors.length} neighboring countries, and a capital named ${myCountry.capital}.`);
+// console.log(`${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbors.length} neighboring countries, and a capital named ${myCountry.capital}.`);
 const dotNotation = myCountry.population += 2;
 console.log(dotNotation);
 const bracketsNotation = myCountry["population"] -= 2;
 console.log(bracketsNotation);
 // ----------------------------------------------------------------------------
+
+// Object Methods
+myCountry.describe();
+// checkIsland has to run before you can log the result
+myCountry.checkIsland();
+console.log(myCountry.isIsland);
+
+
+// ----------------------------------------------------------------------------
+
+// Iteration: The for Loop
+
+// ----------------------------------------------------------------------------
+
+// Looping Arrays, Breaking and Continuing
+
+// ----------------------------------------------------------------------------
+
+// Looping Backwards and Loops in Loops
+
+// ----------------------------------------------------------------------------
+
+// The while Loop

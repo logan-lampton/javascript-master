@@ -8,7 +8,7 @@ function remainingStudyTime(remainingTime, lessonTime) {
   const spedUp = beforeSpedUp / 1.5;
   return spedUp / 60;
 }
-const timeTilParty = `Party in ${remainingStudyTime(133, 25)} hours, friends!`;
+const timeTilParty = `Party in ${remainingStudyTime(108, 23)} hours, friends!`;
 console.log(timeTilParty);
 // ----------------------------------------------------------------------------
 
@@ -115,10 +115,10 @@ const years = new Array(1988, 1991, 1996);
 // console.log(friends);
 // array can be mutated, be we can't replace the entire array
 
-const firstName = "Jonas";
-// arrays can contain variables and even other arrays
-const jonas = [firstName, "Schmedtmann", 2023 - 1991, "teacher", friends];
-console.log(jonas);
+// const firstName = "Jonas";
+// // arrays can contain variables and even other arrays
+// const jonas = [firstName, "Schmedtmann", 2023 - 1991, "teacher", friends];
+// console.log(jonas);
 
 const calcNewAge = function (birthYear) {
   return 2023 - birthYear;
@@ -209,3 +209,44 @@ console.log(
 );
 
 // ----------------------------------------------------------------------------
+
+// Object Methods
+// can add a function to an object in the syntax of calcAge below
+const jonas = {
+  firstName: "Jonas",
+  lastName: "Schmedtmann",
+  birthYear: 1991,
+  job: "teacher",
+  friends: ["Michael", "Peter", "Steven"],
+  hasDriversLicense: true,
+  calcAge: function () {
+    this.age = 2023 - this.birthYear;
+    return this.age;
+  },
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year-old ${jonas.job}, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.`
+  }
+};
+// the 'this' in the function, refers to the entire jonas object
+// this.age would create a new key called 'age', with the value of the calculation of 2023 - this.birthYear
+// jonas.age = 1;
+console.log(jonas.calcAge());
+console.log(jonas.age);
+console.log(jonas.getSummary());
+
+
+// ----------------------------------------------------------------------------
+
+// Iteration: The for Loop
+
+// ----------------------------------------------------------------------------
+
+// Looping Arrays, Breaking and Continuing
+
+// ----------------------------------------------------------------------------
+
+// Looping Backwards and Loops in Loops
+
+// ----------------------------------------------------------------------------
+
+// The while Loop
