@@ -73,3 +73,22 @@ if(!neighbors.includes("Germany")) {
 neighbors[neighbors.indexOf("Cuba")] = "Super Cuba";
 console.log(neighbors);
 // ----------------------------------------------------------------------------
+
+// Intro to Objects
+const myCountry = {
+  country: "The United States of America",
+  capital: "Washington DC",
+  language: "English",
+  population: 331.9,
+  neighbors: ["Canada", "Mexico", "Bahamas", "Cuba"]
+};
+
+// ----------------------------------------------------------------------------
+
+// Dot vs. Bracket Notation
+console.log(`${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbors.length} neighboring countries, and a capital named ${myCountry.capital}.`);
+const dotNotation = myCountry.population += 2;
+console.log(dotNotation);
+const bracketsNotation = myCountry["population"] -= 2;
+console.log(bracketsNotation);
+// ----------------------------------------------------------------------------

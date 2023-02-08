@@ -8,7 +8,7 @@ function remainingStudyTime(remainingTime, lessonTime) {
   const spedUp = beforeSpedUp / 1.5;
   return spedUp / 60;
 }
-const timeTilParty = `Party in ${remainingStudyTime(143, 10)} hours, friends!`;
+const timeTilParty = `Party in ${remainingStudyTime(133, 25)} hours, friends!`;
 console.log(timeTilParty);
 // ----------------------------------------------------------------------------
 
@@ -157,8 +157,55 @@ console.log(friends.indexOf("Debra"));
 // .includes returns either true or false depending on if the element is in the array; uses strict equality
 console.log(friends.includes("Steven"));
 
-if(friends.includes("Peter")) {
+if (friends.includes("Peter")) {
   console.log(`You have a friend named Peter!`);
-};
+}
 // ----------------------------------------------------------------------------
 
+// Objects
+// key : value pairs allow us to grab data in an object much faster
+// Below is an object literal; literally making the object
+const jonasInstructor = {
+  firstName: "Jonas",
+  lastName: "Schmedtmann",
+  age: 2023 - 1991,
+  job: "teacher",
+  friends: ["Michael", "Peter", "Steven"],
+};
+// Unlike arrays, the order of data in an object doesn't matter
+// ----------------------------------------------------------------------------
+
+// Dot vs. Bracket Notation
+// Dot notation
+console.log(jonasInstructor.firstName);
+
+// Bracket notation
+console.log(jonasInstructor["lastName"]);
+// Bracket notation can include any expression
+const nameKey = "Name";
+console.log(jonasInstructor["first" + nameKey]);
+// results in Jonas
+console.log(jonasInstructor["last" + nameKey]);
+// results in Schmedtmann
+// If you don't need to add an logical expression; dot notation is cleaner
+
+// const interestedIn = prompt(
+//   "What do you want to know about Jonas? Choose between firstName, lastName, age, job, and friends"
+// );
+// the console.log below will display the result the user typed into the interestedIn prompt
+
+jonasInstructor.location = "Portugal";
+jonasInstructor["Twitter"] = "@jonastwitter";
+
+// Below shows the result if it exists in the object ('true'); if it doesn't exist ('false'), we display the second console.log
+// if (jonasInstructor[interestedIn]) {
+//   console.log(jonasInstructor[interestedIn]);
+// } else {
+//   console.log("Please select one of the options provided");
+// }
+
+console.log(
+  `${jonasInstructor.firstName} has ${jonasInstructor.friends.length} friends, and his best friend is named ${jonasInstructor.friends[0]}`
+);
+
+// ----------------------------------------------------------------------------
