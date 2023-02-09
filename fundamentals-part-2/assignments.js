@@ -67,9 +67,9 @@ console.log(percentages);
 const neighbors = ["Canada", "Mexico", "Bahamas", "Cuba"];
 neighbors.push("Utopia");
 neighbors.pop();
-if(!neighbors.includes("Germany")) {
+if (!neighbors.includes("Germany")) {
   console.log("Probably not a central European country :D");
-};
+}
 neighbors[neighbors.indexOf("Cuba")] = "Super Cuba";
 console.log(neighbors);
 // ----------------------------------------------------------------------------
@@ -81,21 +81,23 @@ const myCountry = {
   language: "English",
   population: 331.9,
   neighbors: ["Canada", "Mexico", "Bahamas", "Cuba"],
-  describe: function() {
-    console.log(`${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbors.length} neighboring countries, and a capital named ${this.capital}.`)
+  describe: function () {
+    console.log(
+      `${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbors.length} neighboring countries, and a capital named ${this.capital}.`
+    );
   },
-  checkIsland: function() {
+  checkIsland: function () {
     this.isIsland = this.neighbors.length === 0 ? true : false;
-  }
+  },
 };
 
 // ----------------------------------------------------------------------------
 
 // Dot vs. Bracket Notation
 // console.log(`${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbors.length} neighboring countries, and a capital named ${myCountry.capital}.`);
-const dotNotation = myCountry.population += 2;
+const dotNotation = (myCountry.population += 2);
 console.log(dotNotation);
-const bracketsNotation = myCountry["population"] -= 2;
+const bracketsNotation = (myCountry["population"] -= 2);
 console.log(bracketsNotation);
 // ----------------------------------------------------------------------------
 
@@ -104,11 +106,12 @@ myCountry.describe();
 // checkIsland has to run before you can log the result
 myCountry.checkIsland();
 console.log(myCountry.isIsland);
-
-
 // ----------------------------------------------------------------------------
 
 // Iteration: The for Loop
+for (let vote = 1; vote <= 50; vote++) {
+  console.log(`Voter number ${vote} is currently voting`);
+}
 
 // ----------------------------------------------------------------------------
 

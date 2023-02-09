@@ -4,11 +4,12 @@
 // My time remaining function
 function remainingStudyTime(remainingTime, lessonTime) {
   const beforeSpedUp = remainingTime - lessonTime;
+  console.log(beforeSpedUp);
   const spedUp = beforeSpedUp / 1.5;
   console.log(spedUp);
   return spedUp / 60;
 }
-const timeTilParty = `Party in ${remainingStudyTime(86, 13)} hours, friends!`;
+const timeTilParty = `Party in ${remainingStudyTime(73, 10)} hours, friends!`;
 console.log(timeTilParty);
 // ----------------------------------------------------------------------------
 
@@ -224,8 +225,10 @@ const jonas = {
     return this.age;
   },
   getSummary: function () {
-    return `${this.firstName} is a ${this.calcAge()}-year-old ${jonas.job}, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.`
-  }
+    return `${this.firstName} is a ${this.calcAge()}-year-old ${
+      jonas.job
+    }, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.`;
+  },
 };
 // the 'this' in the function, refers to the entire jonas object
 // this.age would create a new key called 'age', with the value of the calculation of 2023 - this.birthYear
@@ -233,12 +236,14 @@ const jonas = {
 console.log(jonas.calcAge());
 console.log(jonas.age);
 console.log(jonas.getSummary());
-
-
 // ----------------------------------------------------------------------------
 
 // Iteration: The for Loop
-
+// the for loop keeps running while the condition is TRUE
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Lifting weights repetition ${rep} 🏋️`);
+};
+// for loops keep your code DRY!
 // ----------------------------------------------------------------------------
 
 // Looping Arrays, Breaking and Continuing
