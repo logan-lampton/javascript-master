@@ -289,6 +289,19 @@ for(let i = 0; i < newJonas.length; i++) {
 // ----------------------------------------------------------------------------
 
 // Looping Backwards and Loops in Loops
+// looping backwards
+for(let i = newJonas.length -1; i >= 0; i--) {
+  console.log(i, newJonas[i]);
+};
+
+// a loop inside of a loop
+for(let exercise = 1; exercise < 4; exercise++) {
+  console.log(`--Starting exercise ${exercise}.`);
+
+  for(let rep = 1; rep < 6; rep++) {
+    console.log(`Lifting weight repetition ${rep} 🏋️`)
+  };
+};
 
 // ----------------------------------------------------------------------------
 
