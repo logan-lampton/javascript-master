@@ -9,7 +9,7 @@ function remainingStudyTime(remainingTime, lessonTime) {
   console.log(spedUp);
   return spedUp / 60;
 }
-const timeTilParty = `Party in ${remainingStudyTime(73, 10)} hours, friends!`;
+const timeTilParty = `Party in ${remainingStudyTime(63, 22)} hours, friends!`;
 console.log(timeTilParty);
 // ----------------------------------------------------------------------------
 
@@ -178,15 +178,15 @@ const jonasInstructor = {
 
 // Dot vs. Bracket Notation
 // Dot notation
-console.log(jonasInstructor.firstName);
+// console.log(jonasInstructor.firstName);
 
 // Bracket notation
-console.log(jonasInstructor["lastName"]);
+// console.log(jonasInstructor["lastName"]);
 // Bracket notation can include any expression
 const nameKey = "Name";
-console.log(jonasInstructor["first" + nameKey]);
-// results in Jonas
-console.log(jonasInstructor["last" + nameKey]);
+// console.log(jonasInstructor["first" + nameKey]);
+// // results in Jonas
+// console.log(jonasInstructor["last" + nameKey]);
 // results in Schmedtmann
 // If you don't need to add an logical expression; dot notation is cleaner
 
@@ -233,21 +233,59 @@ const jonas = {
 // the 'this' in the function, refers to the entire jonas object
 // this.age would create a new key called 'age', with the value of the calculation of 2023 - this.birthYear
 // jonas.age = 1;
-console.log(jonas.calcAge());
-console.log(jonas.age);
-console.log(jonas.getSummary());
+// console.log(jonas.calcAge());
+// console.log(jonas.age);
+// console.log(jonas.getSummary());
 // ----------------------------------------------------------------------------
 
 // Iteration: The for Loop
 // the for loop keeps running while the condition is TRUE
 for (let rep = 1; rep <= 10; rep++) {
-  console.log(`Lifting weights repetition ${rep} 🏋️`);
-};
+  // console.log(`Lifting weights repetition ${rep} 🏋️`);
+}
 // for loops keep your code DRY!
 // ----------------------------------------------------------------------------
 
 // Looping Arrays, Breaking and Continuing
+const newJonas = [
+  "Jonas",
+  "Schmedtmann",
+  2023 - 1991,
+  "teacher",
+  ["Michael", "Peter", "Steven"],
+];
+const types = [];
 
+// arrays are 0 based, so we will start on index of 0
+// the code below works with an ARRAY, not a key value pair object
+for (let i = 0; i < newJonas.length - 1; i++) {
+  console.log(newJonas[i]);
+  types[i] = typeof newJonas[i];
+  console.log(types);
+  types.push(typeof newJonas[i]);
+}
+console.log(types);
+
+const yearsArray = [1991, 2007, 1969, 2020];
+const ages = [];
+for(let i = 0; i <= yearsArray.length - 1; i++) {
+  let age = 2023 - yearsArray[i];
+  ages.push(age);
+};
+console.log(ages);
+
+// continue and break
+// continue will have the code CONTINUE only when certain states are met and skip the rest
+for(let i = 0; i < newJonas.length; i++) {
+  if(typeof newJonas[i] !=="string") continue;
+  console.log(newJonas[i], typeof newJonas[i])
+};
+// BREAK stops the code once certain code runs
+console.log("BREAK WITH NUMBER")
+for(let i = 0; i < newJonas.length; i++) {
+  if(typeof newJonas[i] === "number") break;
+  console.log(newJonas[i], typeof newJonas[i])
+};
 // ----------------------------------------------------------------------------
 
 // Looping Backwards and Loops in Loops

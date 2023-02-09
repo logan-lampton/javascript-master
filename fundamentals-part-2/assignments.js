@@ -110,12 +110,18 @@ console.log(myCountry.isIsland);
 
 // Iteration: The for Loop
 for (let vote = 1; vote <= 50; vote++) {
-  console.log(`Voter number ${vote} is currently voting`);
+  // console.log(`Voter number ${vote} is currently voting`);
 }
-
 // ----------------------------------------------------------------------------
 
 // Looping Arrays, Breaking and Continuing
+const populations2 = [1441, 1408, 332, 213];
+const percentages2 = [];
+for(i = 0; i < populations2.length; i++) {
+  percentages2.push(percentageOfWorld1(populations2[i]));
+};
+console.log(percentages2)
+
 
 // ----------------------------------------------------------------------------
 
