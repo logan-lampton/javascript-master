@@ -4,11 +4,11 @@
 // My time remaining function
 function remainingStudyTime(remainingTime, lessonTime) {
   const beforeSpedUp = remainingTime - lessonTime;
-  console.log(beforeSpedUp);
   const spedUp = beforeSpedUp / 1.5;
+  console.log(spedUp);
   return spedUp / 60;
 }
-const timeTilParty = `Party in ${remainingStudyTime(108, 23)} hours, friends!`;
+const timeTilParty = `Party in ${remainingStudyTime(86, 13)} hours, friends!`;
 console.log(timeTilParty);
 // ----------------------------------------------------------------------------
 
