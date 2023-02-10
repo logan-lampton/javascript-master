@@ -69,9 +69,9 @@ const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 console.log(total);
 
 //Instructor's Answer
-const instructorCalcTip = function (bill) {
-  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
-};
+// const instructorCalcTip = function (bill) {
+//   return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+// };
 // as an arrow function
 // const calcTip = bill => bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
 
@@ -128,5 +128,31 @@ if (mark.BMI > john.BMI) {
 } else {
   console.log("Their BMI is the same!");
 }
-
 // ----------------------------------------------------------------------------
+
+// Coding Challenge #4
+const bills4 = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips4 = [];
+const totals4 = [];
+function tipCalc(bill){
+  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+};
+for(i = 0; i < bills4.length; i++){
+  const tip = tipCalc(bills4[i]);
+  tips4.push(tip);
+  const total = tip + bills4[i];
+  totals4.push(total);
+};
+console.log(tips4, totals4);
+
+// BONUS
+function calcAverage(arr) {
+  let sum = 0;
+  for(let i = 0; i < arr.length; i++) {
+    sum = arr[i] + sum;
+    // sum += arr[i] is the same
+  };
+  return sum / arr.length;
+};
+const test4 = calcAverage(totals4);
+console.log(test4);
