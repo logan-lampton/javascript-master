@@ -132,9 +132,15 @@ const listOfNeighbors = [
 for (let i = 0; i < listOfNeighbors.length; i++) {
   for (let y = 0; y < listOfNeighbors[i].length; y++) {
     console.log(`Neighbor: ${listOfNeighbors[i][y]}`);
-  };
-};
-
+  }
+}
 // ----------------------------------------------------------------------------
 
 // The while Loop
+const percentages3 = [];
+let w = 0;
+while (w < populations2.length) {
+  percentages3.push(percentageOfWorld1(populations2[w]));
+  w++;
+}
+console.log(percentages3)

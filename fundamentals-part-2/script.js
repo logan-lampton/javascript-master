@@ -317,7 +317,8 @@ let dice = Math.trunc(Math.random() * 6) + 1;
 while (dice !== 6) {
   console.log(`Cool you rolled a ${dice}!`);
   dice = Math.trunc(Math.random() * 6) + 1;
-  if(dice === 6) {
+  if (dice === 6) {
     console.log(`The loop is about to end since you rolled a ${dice}`);
-  };
-};
+  }
+}
+// While loop is better when you don't know how many iterations the loop will have
