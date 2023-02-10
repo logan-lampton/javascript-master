@@ -268,41 +268,56 @@ console.log(types);
 
 const yearsArray = [1991, 2007, 1969, 2020];
 const ages = [];
-for(let i = 0; i <= yearsArray.length - 1; i++) {
+for (let i = 0; i <= yearsArray.length - 1; i++) {
   let age = 2023 - yearsArray[i];
   ages.push(age);
-};
+}
 console.log(ages);
 
 // continue and break
 // continue will have the code CONTINUE only when certain states are met and skip the rest
-for(let i = 0; i < newJonas.length; i++) {
-  if(typeof newJonas[i] !=="string") continue;
-  console.log(newJonas[i], typeof newJonas[i])
-};
+for (let i = 0; i < newJonas.length; i++) {
+  if (typeof newJonas[i] !== "string") continue;
+  console.log(newJonas[i], typeof newJonas[i]);
+}
 // BREAK stops the code once certain code runs
-console.log("BREAK WITH NUMBER")
-for(let i = 0; i < newJonas.length; i++) {
-  if(typeof newJonas[i] === "number") break;
-  console.log(newJonas[i], typeof newJonas[i])
-};
+console.log("BREAK WITH NUMBER");
+for (let i = 0; i < newJonas.length; i++) {
+  if (typeof newJonas[i] === "number") break;
+  console.log(newJonas[i], typeof newJonas[i]);
+}
 // ----------------------------------------------------------------------------
 
 // Looping Backwards and Loops in Loops
 // looping backwards
-for(let i = newJonas.length -1; i >= 0; i--) {
+for (let i = newJonas.length - 1; i >= 0; i--) {
   console.log(i, newJonas[i]);
-};
+}
 
 // a loop inside of a loop
-for(let exercise = 1; exercise < 4; exercise++) {
-  console.log(`--Starting exercise ${exercise}.`);
+// for(let exercise = 1; exercise < 4; exercise++) {
+//   console.log(`--Starting exercise ${exercise}.`);
 
-  for(let rep = 1; rep < 6; rep++) {
-    console.log(`Lifting weight repetition ${rep} 🏋️`)
-  };
-};
+//   for(let rep = 1; rep < 6; rep++) {
+//     console.log(`Lifting weight repetition ${rep} 🏋️`)
+//   };
+// };
 
 // ----------------------------------------------------------------------------
 
 // The while Loop
+// let rep = 1;
+// while(rep <= 10) {
+//   console.log(`WHILE Lifting weight repetition ${rep} 🏋️`);
+//   rep++;
+// };
+// while loop is more versatile than the for loop
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+while (dice !== 6) {
+  console.log(`Cool you rolled a ${dice}!`);
+  dice = Math.trunc(Math.random() * 6) + 1;
+  if(dice === 6) {
+    console.log(`The loop is about to end since you rolled a ${dice}`);
+  };
+};
