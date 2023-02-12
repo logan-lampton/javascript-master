@@ -30,11 +30,16 @@ const calcTempAmplitude = function (temperatures) {
   let max = temperatures[0];
   let min = temperatures[0];
   for (let i = 1; i < temperatures.length; i++) {
-    if (max < temperatures[i]) {
-      max = temperatures[i];
+    const currentTemp = temperatures[i];
+    // to ignore 'errors', which are strings
+    if (typeof currentTemp !== 'number') {
+      continue;
     }
-    if (min > temperatures[i]) {
-      min = temperatures[i];
+    if (max < currentTemp) {
+      max = currentTemp;
+    }
+    if (min > currentTemp) {
+      min = currentTemp;
     }
   }
   return max - min;
