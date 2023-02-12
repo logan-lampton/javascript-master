@@ -45,3 +45,28 @@ const calcTempAmplitude = function (temperatures) {
   return max - min;
 };
 console.log(calcTempAmplitude(temperatures));
+
+// Problem #2
+// Function should recieve two arrays
+//  - Merge 2 arrays
+const calcTempAmplitudeNew = function (tempArray1, tempArray2) {
+  // Merge 2 arrays
+  const temperatures = tempArray1.concat(tempArray2);
+  let max = temperatures[0];
+  let min = temperatures[0];
+  for (let i = 1; i < temperatures.length; i++) {
+    const currentTemp = temperatures[i];
+    // to ignore 'errors', which are strings
+    if (typeof currentTemp !== 'number') {
+      continue;
+    }
+    if (max < currentTemp) {
+      max = currentTemp;
+    }
+    if (min > currentTemp) {
+      min = currentTemp;
+    }
+  }
+  return max - min;
+};
+console.log(calcTempAmplitudeNew(temperatures));
