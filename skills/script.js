@@ -27,8 +27,8 @@ const temperatures = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
 // - Subtract min from max (amplitude) and return it
 
 const calcTempAmplitude = function (temperatures) {
-  let max = temperatures[0];
-  let min = temperatures[0];
+  let max = 0;
+  let min = 0;
   for (let i = 1; i < temperatures.length; i++) {
     const currentTemp = temperatures[i];
     // to ignore 'errors', which are strings
@@ -52,8 +52,8 @@ console.log(calcTempAmplitude(temperatures));
 const calcTempAmplitudeNew = function (tempArray1, tempArray2) {
   // Merge 2 arrays
   const temperatures = tempArray1.concat(tempArray2);
-  let max = temperatures[0];
-  let min = temperatures[0];
+  let max = 0;
+  let min = 0;
   for (let i = 1; i < temperatures.length; i++) {
     const currentTemp = temperatures[i];
     // to ignore 'errors', which are strings
@@ -70,3 +70,45 @@ const calcTempAmplitudeNew = function (tempArray1, tempArray2) {
   return max - min;
 };
 console.log(calcTempAmplitudeNew(temperatures));
+
+const measureKelvin = function () {
+  const measurement = {
+    type: 'temp',
+    unit: 'celsius',
+    value: 10,
+    // value: prompt('Type the temperature in degrees Celsius'),
+  };
+  //   awesome way to make a table of an object in the console
+  console.table(measurement);
+  const kelvin = Number(measurement.value) + 273;
+  return kelvin;
+};
+
+console.log(measureKelvin());
+
+// DEBUGGER
+// To get to it on Google Chrome, open console, and click on "Sources"
+// Add breakpoints where you want to examine in the code
+// Be sure to remove breakpoints once you are done with them
+
+// Debugging
+const calcTempAmplitudeBug = function (tempArray1, tempArray2) {
+  const temperatures = tempArray1.concat(tempArray2);
+  let max = 0;
+  let min = 0;
+  for (let i = 1; i < temperatures.length; i++) {
+    const currentTemp = temperatures[i];
+    // to ignore 'errors', which are strings
+    if (typeof currentTemp !== 'number') {
+      continue;
+    }
+    if (max < currentTemp) {
+      max = currentTemp;
+    }
+    if (min > currentTemp) {
+      min = currentTemp;
+    }
+  }
+  return max - min;
+};
+console.log(calcTempAmplitudeBug(temperatures));
