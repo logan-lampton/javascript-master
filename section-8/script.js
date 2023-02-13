@@ -97,7 +97,7 @@ const jonas = {
 jonas.calcAge();
 
 const matilda = {
-  year: 2017
+  year: 2017,
 };
 // a function is just a value; below is an example of method borrowing
 matilda.calcAge = jonas.calcAge;
@@ -112,31 +112,31 @@ const f = jonas.calcAge;
 
 // logan below is an object literal
 const logan = {
-  firstName: "Logan",
+  firstName: 'Logan',
   year: 1988,
   calcAge: function () {
     console.log(this);
     console.log(2023 - this.year);
-    
-  // older codebases use a variable called 'self'
-  //   const self = this;
-  //   const isMillenial = function () {
-  //     console.log(self.year >= 1981 && self.year <= 1996);
-  //   };
-  //   isMillenial();
-  // the this keyword MUST be undefined in a regular function call
-  // },
 
-  // if you need to call a function within a method, you can make the method an arrow function, that will make the this keyword go from 'undefined' to the parent this keyword, so the keyword of the object!!!
-  const isMillenial = () => {
-    console.log(this)
-    console.log(this.year >= 1981 && this.year <= 1996);
-  };
+    // older codebases use a variable called 'self'
+    //   const self = this;
+    //   const isMillenial = function () {
+    //     console.log(self.year >= 1981 && self.year <= 1996);
+    //   };
+    //   isMillenial();
+    // the this keyword MUST be undefined in a regular function call
+    // },
+
+    // if you need to call a function within a method, you can make the method an arrow function, that will make the this keyword go from 'undefined' to the parent this keyword, so the keyword of the object!!!
+    const isMillenial = () => {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
     isMillenial();
     // the this keyword MUST be undefined in a regular function call
   },
-  greet: () => console.log(`Hey ${this.firstName}`)
-}
+  greet: () => console.log(`Hey ${this.firstName}`),
+};
 logan.calcAge();
 // logan.greet() will be undefined as the this keyword in the arrow function is the parent scope this keyword (window object in this case)
 logan.greet();
@@ -149,7 +149,7 @@ const addExpr = function (a, b) {
 addExpr(2, 5);
 // the arguments keyword shows the array of arguments
 // you can add more arguements to a function; they will be added to the arguments array, but not be named
-addExpr(2, 5, 10, 4, "etc");
+addExpr(2, 5, 10, 4, 'etc');
 
 // the arguments keyword ONLY exists in regular functions. NOT arrow functions.
 // the arguments keyword isn't that important anymore.
@@ -158,7 +158,7 @@ addExpr(2, 5, 10, 4, "etc");
 // Objects vs. primitives
 
 // Primatives are:
-  // number, string, boolean, undefined, null, symbol, bigInt
+// number, string, boolean, undefined, null, symbol, bigInt
 let age = 30;
 let oldAge = age;
 age = 31;
@@ -168,7 +168,7 @@ console.log(oldAge);
 
 const him = {
   name: jonas,
-  age: 30
+  age: 30,
 };
 
 const friend = him;
@@ -188,6 +188,48 @@ console.log(him, friend);
 
 // variables in the call stack reference the actual object stored in the heap
 
-
 ///////////////////////////////////////
 // Primitives vs. Objects in Practice
+
+// Primative types
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'Davis';
+console.log(lastName, oldLastName);
+
+// Reference types
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis';
+// this would change the last name for the original jessica object. We didn't make a new jessica object, just a second variable referencing the same object.
+
+// Copying objects
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Greg', 'Martha', 'Waffleboy', 'Spatula Jr.'],
+};
+
+// The result would be a new object with all the details from jessica2
+const jessica3 = Object.assign({}, jessica2);
+
+// if we change the lastName on jessica3 object, it will now not affect jessica2 object
+jessica3.lastName = 'Davis';
+jessica3.family.push('Tingle');
+jessica3.family.push('Literally Santa Claus');
+console.log('Jessica2:', jessica2);
+console.log('Jessica3:', jessica3);
+
+// Object.assign only makes a SHALLOW copy
+// It only makes a new copy of the top level object
+// If there are any objects inside of the top level object, they are still shared with both top level objects.
+
+// the family array (which is an object) is still shared by jessica2 and jessica3
+
+// Deep cloning generally requires a separate library
