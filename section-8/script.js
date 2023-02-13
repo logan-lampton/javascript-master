@@ -66,8 +66,83 @@ const z = 3;
 ///////////////////////////////////////
 // The this Keyword in Practice
 
+// console.log(this) on a global scale selects the window object
+
+// this in a declared function returns undefined
+function calcAge2(birthYear) {
+  let year = 2023;
+  const age = year - birthYear;
+  console.log(this);
+}
+calcAge2(1991);
+
+// this in an arrow function returns the LEXICAL this keyword, the this keyword of the parent scope. In this case it would be the global scope, so the window object.
+// arrow functions do not get their own this keyword
+const calcAgeArrow = birthYear => {
+  let year = 2023;
+  const age = year - birthYear;
+  console.log(this);
+};
+calcAgeArrow(1991);
+
+// for objects, the this keyword within the object, refers to the object
+const jonas = {
+  year: 1991,
+  calcAge: function () {
+    console.log(this);
+    console.log(2023 - this.year);
+  },
+};
+// this within jonas, will return the jonas object
+jonas.calcAge();
+
+const matilda = {
+  year: 2017
+};
+// a function is just a value; below is an example of method borrowing
+matilda.calcAge = jonas.calcAge;
+matilda.calcAge();
+
+// this is undefined if we assign the calcAge method to a variable that isn't an object
+const f = jonas.calcAge;
+// f.calcAge();
+
 ///////////////////////////////////////
 // Regular Functions vs. Arrow Functions
+
+// logan below is an object literal
+const logan = {
+  firstName: "Logan",
+  year: 1988,
+  calcAge: function () {
+    console.log(this);
+    console.log(2023 - this.year);
+    
+  // older codebases use a variable called 'self'
+  //   const self = this;
+  //   const isMillenial = function () {
+  //     console.log(self.year >= 1981 && self.year <= 1996);
+  //   };
+  //   isMillenial();
+  // the this keyword MUST be undefined in a regular function call
+  // },
+  
+  // if you need to call a function within a method, you can make the method an arrow function, that will make the this keyword go from 'undefined' to the parent this keyword, so the keyword of the object!!!
+  const isMillenial = () => {
+    console.log(this)
+    console.log(this.year >= 1981 && this.year <= 1996);
+  };
+    isMillenial();
+    // the this keyword MUST be undefined in a regular function call
+  },
+  greet: () => console.log(`Hey ${this.firstName}`)
+}
+logan.calcAge();
+// logan.greet() will be undefined as the this keyword in the arrow function is the parent scope this keyword (window object in this case)
+logan.greet();
+
+
+
 
 ///////////////////////////////////////
 // Objects vs. primitives
