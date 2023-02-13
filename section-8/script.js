@@ -157,5 +157,37 @@ addExpr(2, 5, 10, 4, "etc");
 ///////////////////////////////////////
 // Objects vs. primitives
 
+// Primatives are:
+  // number, string, boolean, undefined, null, symbol, bigInt
+let age = 30;
+let oldAge = age;
+age = 31;
+// age = 31, oldAge = 30
+console.log(age);
+console.log(oldAge);
+
+const him = {
+  name: jonas,
+  age: 30
+};
+
+const friend = him;
+friend.age = 27;
+
+// changes the age of both objects to 27
+// We didn't copy the object, we just made a new variable that also points to that object in the heap
+console.log(him, friend);
+
+// Basically everything in JavaScript that isn't a primative is an object:
+//   object literals, arrays, functions, many more
+
+// Primatives are called primative types and objects are called reference types
+
+// Primative types are stored in the call stack
+// Reference types (objects) are stored in the heap
+
+// variables in the call stack reference the actual object stored in the heap
+
+
 ///////////////////////////////////////
 // Primitives vs. Objects in Practice
