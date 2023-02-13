@@ -126,7 +126,7 @@ const logan = {
   //   isMillenial();
   // the this keyword MUST be undefined in a regular function call
   // },
-  
+
   // if you need to call a function within a method, you can make the method an arrow function, that will make the this keyword go from 'undefined' to the parent this keyword, so the keyword of the object!!!
   const isMillenial = () => {
     console.log(this)
@@ -141,8 +141,18 @@ logan.calcAge();
 // logan.greet() will be undefined as the this keyword in the arrow function is the parent scope this keyword (window object in this case)
 logan.greet();
 
+// arguments keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
+};
+addExpr(2, 5);
+// the arguments keyword shows the array of arguments
+// you can add more arguements to a function; they will be added to the arguments array, but not be named
+addExpr(2, 5, 10, 4, "etc");
 
-
+// the arguments keyword ONLY exists in regular functions. NOT arrow functions.
+// the arguments keyword isn't that important anymore.
 
 ///////////////////////////////////////
 // Objects vs. primitives
