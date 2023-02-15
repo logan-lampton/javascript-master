@@ -90,3 +90,16 @@ restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 // We can use the || operator to set default values
 
 // We can use the && operator to execute code in the second operant if the first operant is true
+
+// Nullish Coalescing Operator (??)
+
+// should say 0 guests, since that is what is declared.
+// However, 0 is falsey, so the || (OR) operator returns our default value of 10
+restaurant.numGuests = 0
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+// The Nullish Coalescing Operator (??) for the below returns 0, since it returns whatever isn't a nullish value (null, undefined)
+// Therefore, it doesn't short circuit on a 0 or empty string ("")
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
