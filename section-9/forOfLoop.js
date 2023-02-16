@@ -109,3 +109,28 @@ const users = [
     {name: "jonas", email: "hello@jonas.io"}
 ]
 console.log(users[0]?.name ?? "User array empty");
+
+// Looping Objects
+// Object keys, values, and entries
+
+// PROPERTY NAMES
+const properties = Object.keys(openingHours);
+let openStr = `We are open on ${properties.length} days: `;
+
+for (const day of Object.keys(openingHours)) {
+    openStr += `${day}, `;
+};
+console.log(openStr);
+
+// PROPERTY VALUES
+const values = Object.values(openingHours);
+console.log(values);
+
+// PROPERTY ENTRIES
+// This is the entire object transformed into an array
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+for (const [day, {open, close}] of entries) {
+    console.log(`On ${day} we open at ${open} and close at ${close}.`);
+}
