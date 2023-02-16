@@ -1,5 +1,23 @@
 "use strict";
 
+const weekdays = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
+
+// With ES6 we can also compute the key information (see [weekdays[3]])
+const openingHours = {
+    [weekdays[3]] : {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+}
+
 // Restaurant object
 const restaurant = {
     name: 'Classico Italiano',
@@ -8,7 +26,8 @@ const restaurant = {
     starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
     mainMenu: ['Pizza', 'Pasta', 'Risotto'],
   
-    order: function (starterIndex, mainIndex) {
+    // New simpler ES6 syntax for functions in an object
+    order(starterIndex, mainIndex) {
       return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
     },
   
@@ -29,26 +48,12 @@ const restaurant = {
         `Here is your delicious pasta with ${ingredient1}, ${ingredient2}, and ${ingredient3}!`
       );
     },
-  
+    // ES6 Object Literals referencing the openingHours object
+    openingHours,
     orderPizza: function (mainIngredient, ...otherIngredients) {
       console.log(mainIngredient, otherIngredients);
     },
-  
-    openingHours: {
-      thu: {
-        open: 12,
-        close: 22,
-      },
-      fri: {
-        open: 11,
-        close: 23,
-      },
-      sat: {
-        open: 0, // Open 24 hours
-        close: 24,
-      },
-    },
-  };
+};
 
 // array consisting of all items of both menus
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
@@ -66,4 +71,3 @@ for (const [i, el] of menu.entries()) {
 }
 
 // menu.entries is an array iterator
-
