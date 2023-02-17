@@ -111,3 +111,5 @@ console.log(rest.get(arr))
 // you can also save parts of the DOM
 rest.set(document.querySelector("h1"), "Heading");
 console.log(rest);
+
+// test date
