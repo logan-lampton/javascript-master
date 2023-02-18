@@ -27,8 +27,9 @@ document.querySelector('.check').addEventListener('click', handleClick);
 
 // variable for the score
 let score = 20;
+let highscore = 0;
 const scoreText = document.querySelector('.score');
-const highScore = document.querySelector('.highscore');
+const highscoreText = document.querySelector('.highscore');
 
 // Again button
 document.querySelector('.again').addEventListener('click', handleAgain);
@@ -50,10 +51,11 @@ function handleClick() {
     message.textContent = 'No number provided; please guess a number!';
   } else if (guess === secretNumber) {
     message.textContent = 'You guessed the secret number! You win! 🥳';
-    if (highScore.textContent > score) {
-      highScore.textContent;
+    if (highscore > score) {
+      highscoreText.textContent;
     } else {
-      highScore.textContent = score;
+      highscore = score;
+      highscoreText.textContent = score;
     }
   } else if (guess > secretNumber) {
     message.textContent = 'Too high! 📈';
