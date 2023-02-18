@@ -9,8 +9,6 @@
 // DOM manipulation is part of web APIs that JS can manipulate
 // no need to import anything
 
-// document.querySelector('.message').textContent = "Correct Number 🥳"
-
 // document.querySelector(".guess").value = 19;
 
 // Want to define the secret number just once, not each time the button is pressed
@@ -21,6 +19,10 @@ document.querySelector('.number').textContent = secretNumber;
 
 // The function is not called immediately, ONLY when the click occurs
 document.querySelector('.check').addEventListener('click', handleClick);
+
+// variable for the score
+let score = 20;
+const scoreText = document.querySelector('.score');
 
 function handleClick() {
   // the input is a string, so need to convert to a number
@@ -36,7 +38,13 @@ function handleClick() {
     message.textContent = 'You guessed the secret number! You win! 🥳';
   } else if (guess > secretNumber) {
     message.textContent = 'Too high! 📈';
+    score--;
+    scoreText.textContent = score;
   } else {
     message.textContent = 'Too low! 📉';
+    score--;
+    scoreText.textContent = score;
   }
+  // decrementing counter for score
 }
+
