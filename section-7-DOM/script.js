@@ -13,6 +13,11 @@
 
 // Want to define the secret number just once, not each time the button is pressed
 const secretNumber = Math.trunc(Math.random() * 20 + 1);
+
+function calculateSecretNumber() {
+  const secretNumber = Math.trunc(Math.random() * 20 + 1);
+  return secretNumber;
+}
 // returns a number between 1-20
 
 document.querySelector('.number').textContent = secretNumber;
@@ -23,6 +28,15 @@ document.querySelector('.check').addEventListener('click', handleClick);
 // variable for the score
 let score = 20;
 const scoreText = document.querySelector('.score');
+const highScore = document.querySelector('.highscore');
+
+// Again button
+document.querySelector('.again').addEventListener('click', handleAgain);
+
+function handleAgain() {
+  calculateSecretNumber();
+  document.querySelector('.number').textContent = secretNumber;
+}
 
 function handleClick() {
   // the input is a string, so need to convert to a number
@@ -36,15 +50,27 @@ function handleClick() {
     message.textContent = 'No number provided; please guess a number!';
   } else if (guess === secretNumber) {
     message.textContent = 'You guessed the secret number! You win! 🥳';
+    if (highScore.textContent > score) {
+      highScore.textContent;
+    } else {
+      highScore.textContent = score;
+    }
   } else if (guess > secretNumber) {
     message.textContent = 'Too high! 📈';
-    score--;
-    scoreText.textContent = score;
+    // decrementing counter for score
+    if (score > 1) {
+      score--;
+      scoreText.textContent = score;
+    } else {
+      message.textContent = 'You lose! 😒';
+    }
   } else {
     message.textContent = 'Too low! 📉';
-    score--;
-    scoreText.textContent = score;
+    if (score > 1) {
+      score--;
+      scoreText.textContent = score;
+    } else {
+      message.textContent = 'You lose! 😒';
+    }
   }
-  // decrementing counter for score
 }
-
