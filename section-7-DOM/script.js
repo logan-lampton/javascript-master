@@ -28,3 +28,16 @@ function handleClick() {
       'No number provided; please guess a number!';
   }
 }
+
+// Want to define the secret number just once, not each time the button is pressed
+const secretNumber = Math.trunc(Math.random() * 20 + 1);
+// returns a number between 1-20
+
+let count = 0;
+
+document.querySelector('.again').addEventListener('click', handleCounter);
+
+function handleCounter() {
+    count -= 1;
+    console.log(count);
+}
