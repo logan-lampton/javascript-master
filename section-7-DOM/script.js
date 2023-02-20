@@ -51,6 +51,7 @@ function handleClick() {
     message.textContent = 'No number provided; please guess a number!';
   } else if (guess === secretNumber) {
     message.textContent = 'You guessed the secret number! You win! 🥳';
+    document.querySelector("body").style.backgroundColor = "green"
     if (highscore > score) {
       highscoreText.textContent;
     } else {
