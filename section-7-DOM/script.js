@@ -12,7 +12,7 @@
 // document.querySelector(".guess").value = 19;
 
 // Want to define the secret number just once, not each time the button is pressed
-let secretNumber = Math.trunc(Math.random() * 20 + 1);
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
 // returns a number between 1-20
 
 // function calculateSecretNumber() {
@@ -75,7 +75,7 @@ function handleClick() {
 document.querySelector('.again').addEventListener('click', handleAgain);
 
 function handleAgain() {
-  secretNumber = Math.trunc(Math.random() * 20 + 1);
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
   document.querySelector('.number').textContent = '?';
   score = 20;
   document.querySelector('body').style.backgroundColor = '#222';
