@@ -12,15 +12,13 @@
 // document.querySelector(".guess").value = 19;
 
 // Want to define the secret number just once, not each time the button is pressed
-const secretNumber = Math.trunc(Math.random() * 20 + 1);
-
-function calculateSecretNumber() {
-  const secretNumber = Math.trunc(Math.random() * 20 + 1);
-  return secretNumber;
-}
+let secretNumber = Math.trunc(Math.random() * 20 + 1);
 // returns a number between 1-20
 
-document.querySelector('.number').textContent = secretNumber;
+// function calculateSecretNumber() {
+//   const secretNumber = Math.trunc(Math.random() * 20 + 1);
+//   return secretNumber;
+// }
 
 // The function is not called immediately, ONLY when the click occurs
 document.querySelector('.check').addEventListener('click', handleClick);
@@ -30,14 +28,6 @@ let score = 20;
 let highscore = 0;
 const scoreText = document.querySelector('.score');
 const highscoreText = document.querySelector('.highscore');
-
-// Again button
-document.querySelector('.again').addEventListener('click', handleAgain);
-
-function handleAgain() {
-  calculateSecretNumber();
-  document.querySelector('.number').textContent = secretNumber;
-}
 
 function handleClick() {
   // the input is a string, so need to convert to a number
@@ -51,6 +41,8 @@ function handleClick() {
     message.textContent = 'No number provided; please guess a number!';
   } else if (guess === secretNumber) {
     message.textContent = 'You guessed the secret number! You win! 🥳';
+    document.querySelector('.number').textContent = secretNumber;
+
     document.querySelector('body').style.backgroundColor = 'green';
     document.querySelector('.number').style.width = '30rem';
     if (highscore > score) {
@@ -77,4 +69,18 @@ function handleClick() {
       message.textContent = 'You lose! 😒';
     }
   }
+}
+
+// Again button
+document.querySelector('.again').addEventListener('click', handleAgain);
+
+function handleAgain() {
+  secretNumber = Math.trunc(Math.random() * 20 + 1);
+  document.querySelector('.number').textContent = '?';
+  score = 20;
+  document.querySelector('body').style.backgroundColor = '#222';
+  document.querySelector('.number').style.width = '15rem';
+  scoreText.textContent = 20;
+  document.querySelector('.guess').text = 'Start guessing...';
+  document.querySelector('.guess').value = '';
 }
