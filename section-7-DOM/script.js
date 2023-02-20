@@ -51,23 +51,34 @@ function handleClick() {
       highscore = score;
       highscoreText.textContent = score;
     }
-  } else if (guess > secretNumber) {
-    message.textContent = 'Too high! 📈';
-    // decrementing counter for score
+    // when the guess is wrong; either too high or too low
+  } else if (guess !== secretNumber) {
     if (score > 1) {
-      score--;
-      scoreText.textContent = score;
-    } else {
-      message.textContent = 'You lose! 😒';
+      message.textContent =
+        guess > secretNumber ? 'Too high! 📈' : 'Too low! 📉';
+        score--;
+        scoreText.textContent = score;
     }
-  } else {
-    message.textContent = 'Too low! 📉';
-    if (score > 1) {
-      score--;
-      scoreText.textContent = score;
-    } else {
-      message.textContent = 'You lose! 😒';
-    }
+    else {
+        message.textContent = 'You lose! 😒';
+      }
+//   } else if (guess > secretNumber) {
+//     message.textContent = 'Too high! 📈';
+//     // decrementing counter for score
+//     if (score > 1) {
+//       score--;
+//       scoreText.textContent = score;
+//     } else {
+//       message.textContent = 'You lose! 😒';
+//     }
+//   } else {
+//     message.textContent = 'Too low! 📉';
+//     if (score > 1) {
+//       score--;
+//       scoreText.textContent = score;
+//     } else {
+//       message.textContent = 'You lose! 😒';
+//     }
   }
 }
 
