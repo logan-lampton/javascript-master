@@ -1,5 +1,33 @@
 'use strict';
 
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
+};
+const { name, openingHours, categories } = restaurant;
+
 // to create a new set, you type new Set() with an iterable, like an array
 const ordersSet = new Set([
   'Pasta',
@@ -106,10 +134,58 @@ rest.delete(2);
 // Otherwise the .set and .get will be not accessing the same memory
 const arr = [1, 2];
 rest.set(arr, 'test');
-console.log(rest.get(arr))
+console.log(rest.get(arr));
 
 // you can also save parts of the DOM
-rest.set(document.querySelector("h1"), "Heading");
+rest.set(document.querySelector('h1'), 'Heading');
 console.log(rest);
 
-// test date
+// Creating a new Map
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct!'],
+  [false, 'Try again!'],
+]);
+console.log(question.entries().next().value);
+
+// Converting an object to a Map
+// Good for when you need a map and already have an object
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+// Maps are iterables, so the for loop works on them
+// Quiz app
+console.log(question.get('question'));
+for (const [key, value] of question) {
+  if (typeof key === 'number') {
+    console.log(`Answer ${key}: ${value}`);
+  }
+}
+// remember to convert the string prompt answer to a number
+// const answer = Number(prompt('Please provide your answer as 1, 2, or 3'));
+
+// my more naive approach to the answer
+// function response(answer) {
+//   if (Number(answer) === 3) {
+//     return question.get(true);
+//   } else {
+//     return question.get(false);
+//   }
+// }
+// console.log(response(answer));
+
+// The better approach to the answer from the instructor
+// just to have an answer without a prompt
+const answer = 3;
+console.log(question.get(question.get('correct') === answer));
+
+// To convert a map to an array
+// use the spread operator in an array
+console.log([...question]);
+console.log([...question.entries()]);
+console.log([...question.keys()]);
+console.log([...question.values()]);
