@@ -4,4 +4,4 @@ function timeCalc(remainingTime, lessonTime) {
     const hours = spedTime / 60;
     return console.log(`You have ${baseTime} minutes remaining, converted to ${spedTime} minutes (${hours} hours)`)
 };
-timeCalc(209, 22);
+timeCalc(187, 22);

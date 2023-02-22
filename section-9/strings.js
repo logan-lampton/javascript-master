@@ -107,25 +107,83 @@ console.log(announcement.replaceAll('door', 'gate'));
 
 // Booleans
 const plane2 = 'A320neo';
-console.log(plane2.includes("n"))
+console.log(plane2.includes('n'));
 // returns true
-console.log(plane2.startsWith("A32"));
+console.log(plane2.startsWith('A32'));
 // returns true
 
-if(plane2.startsWith("A") && plane2.endsWith("neo")) {
-    console.log("Part of the new Airbus plane family")
+if (plane2.startsWith('A') && plane2.endsWith('neo')) {
+  console.log('Part of the new Airbus plane family');
 }
 
 // Practice exercise
-const checkBaggage = function(items) {
-    // always convert strings toLowerCase
-    const baggage = items.toLowerCase();
-    if(baggage.includes("knife") || baggage.includes("gun")) {
-        console.log("Please check your baggage before boarding the plane, or you will not be allowed onboard")
-    } else {
-        console.log("You are free to bring your baggage onboard the plane")
-    }
-}
-checkBaggage("I have a Laptop, some Food, and a Pocket Knife");
-checkBaggage("I have some socks and camera");
-checkBaggage("I have some snacks and a gun for protection");
+const checkBaggage = function (items) {
+  // always convert strings toLowerCase
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log(
+      'Please check your baggage before boarding the plane, or you will not be allowed onboard'
+    );
+  } else {
+    console.log('You are free to bring your baggage onboard the plane');
+  }
+};
+checkBaggage('I have a Laptop, some Food, and a Pocket Knife');
+checkBaggage('I have some socks and camera');
+checkBaggage('I have some snacks and a gun for protection');
+// ------------------------------------------------------------------------------------------------------------------------
+
+// Split
+console.log('a+very+nice+string'.split('+'));
+// a very common way to grab first and last names
+// the code below creates an array with two elements
+const [firstName, lastName] = 'Logan Lampton'.split(' ');
+console.log(firstName, lastName);
+
+// Join
+const mister = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+// returns one string composed of the parts of the array
+console.log(mister);
+
+// .split() and .join() will be used a lot
+// Example usecase of the methods
+const capitalizeName = function (name) {
+  const names = name.toLowerCase().split(' ');
+  const namesUpperCase = [];
+  names.forEach(name => {
+    namesUpperCase.push(name[0].toUpperCase() + name.slice(1));
+    // could also write namesUpperCase.push(name[0].replace(name[0], name[0]).toUpperCase)
+  });
+  console.log(namesUpperCase.join(' '));
+};
+capitalizeName('jessica ann smith davis');
+// ------------------------------------------------------------------------------------------------------------------------
+
+// Padding a string
+// Padding a string is adding a certain amount of characters to the beginning of a string until it is the desired length
+const message = 'Got to gate 23';
+console.log(message.padStart(25, '+').padEnd(30, '-'));
+// returns a string with "+" at the front as many times as it takes to make the string 25 characters long; "-" at the end until the string is 30 characters long
+
+// Example on how to mask a credit card number
+const maskCreditCard = function (number) {
+  // the + operant with a string would make the number into a string; since the string is empty, the number doesn't change outside of becoming a string
+  const str = number + '';
+  return console.log(str.slice(-4).padStart(str.length, '*'));
+};
+// generally, websites show the last four digits and mask the rest
+maskCreditCard(48467563920);
+// ------------------------------------------------------------------------------------------------------------------------
+
+// Repeat
+const delayMessage = 'Bad weather... All departures delayed...';
+console.log(delayMessage.repeat(5));
+// returns the delayMessage 5 times in a row
+
+const planesInLine = function (num) {
+  console.log(`There are ${num} planes in line ${'✈️'.repeat(num)}`);
+};
+// emojis count as strings
+planesInLine(10);
+
+// There are many more string methods that can be explored on MDN
