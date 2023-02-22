@@ -42,10 +42,10 @@ const checkMiddleSeat = function (seat) {
 
 // Instuctor solution
 const instructorMiddleSeat = function (seat) {
-    const s = seat.slice(-1);
-    if(s === "B" || s === "E") {
-        console.log("You got the middle seat")
-    } else console.log("You got lucky")
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') {
+    console.log('You got the middle seat');
+  } else console.log('You got lucky');
 };
 
 checkMiddleSeat('11B');
@@ -56,4 +56,76 @@ instructorMiddleSeat('23C');
 
 // JavaScript treats strings as primatives
 // When we call a method of a string, JavaScript does "boxing"; it puts it in an object and then calls the method on it; it then turns it back to a string primative
+// ------------------------------------------------------------------------------------------------------------------------
 
+// toLowerCase / toUpperCase
+console.log(airline.toLowerCase());
+console.log('airline'.toUpperCase());
+// Can call on variables or strings directly
+
+const passenger = 'wALdO';
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect = passenger[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+// A function to return the fixed capitalization for anyone
+function correctPassengerSpelling(passenger) {
+  const passengerToLower = passenger.toLowerCase();
+  return console.log(
+    passengerToLower[0].toUpperCase() + passengerToLower.slice(1)
+  );
+}
+correctPassengerSpelling('gRUNkeLMEisTER');
+// ------------------------------------------------------------------------------------------------------------------------
+
+// Comparing strings
+const email = 'hello@jonas.io';
+const loginEmail = 'Hello@Jonas.Io \n';
+
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim();
+// all in one step version
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+// returns true
+// ------------------------------------------------------------------------------------------------------------------------
+
+// Replacing parts of strings
+const priceGB = '288,97E';
+// My answer
+const priceUS = function (priceGB) {
+  console.log('$' + priceGB.replace(',', '.').replace('E', ''));
+};
+priceUS(priceGB);
+
+// replaceAll
+const announcement =
+  'All passengers come to boarding door 23; boarding door 23.';
+console.log(announcement.replaceAll('door', 'gate'));
+// ------------------------------------------------------------------------------------------------------------------------
+
+// Booleans
+const plane2 = 'A320neo';
+console.log(plane2.includes("n"))
+// returns true
+console.log(plane2.startsWith("A32"));
+// returns true
+
+if(plane2.startsWith("A") && plane2.endsWith("neo")) {
+    console.log("Part of the new Airbus plane family")
+}
+
+// Practice exercise
+const checkBaggage = function(items) {
+    // always convert strings toLowerCase
+    const baggage = items.toLowerCase();
+    if(baggage.includes("knife") || baggage.includes("gun")) {
+        console.log("Please check your baggage before boarding the plane, or you will not be allowed onboard")
+    } else {
+        console.log("You are free to bring your baggage onboard the plane")
+    }
+}
+checkBaggage("I have a Laptop, some Food, and a Pocket Knife");
+checkBaggage("I have some socks and camera");
+checkBaggage("I have some snacks and a gun for protection");
