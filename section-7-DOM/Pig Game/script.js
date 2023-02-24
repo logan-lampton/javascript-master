@@ -33,6 +33,8 @@ let activePlayer = 0;
 // scores array; will be updated in this array
 // player 1 at position 0, player 2 at position 1
 const scores = [0, 0];
+// to denote if the game is won or not
+let playing = true;
 
 // function to switch players
 const switchPlayer = function () {
@@ -44,44 +46,52 @@ const switchPlayer = function () {
 };
 
 rollBtn.addEventListener('click', function () {
-  // Rolling the dice; generating a number between 1-6
-  const dice = Math.floor(Math.random() * 6) + 1;
-  // Rolling the dice; displaying the correct die image
-  diceEl.classList.remove('hidden');
-  // display the correct dice image that matches the number roll
-  diceEl.src = `dice-images/dice-${dice}.png`;
-  // log dice value to the current player's score IF the roll IS NOT 1
-  if (dice !== 1) {
-    // this is shorthand for currentScore = currentScore + dice
-    currentScore += dice;
-    document.getElementById(`current--${activePlayer}`).textContent =
-      currentScore;
-  } else {
-    // Switch to the other player's turn
-    switchPlayer();
+  // only execute if no one has one the game
+  // since playing already === true, we can just write "(playing)" and it means the same
+  if (playing) {
+    // Rolling the dice; generating a number between 1-6
+    const dice = Math.floor(Math.random() * 6) + 1;
+    // Rolling the dice; displaying the correct die image
+    diceEl.classList.remove('hidden');
+    // display the correct dice image that matches the number roll
+    diceEl.src = `dice-images/dice-${dice}.png`;
+    // log dice value to the current player's score IF the roll IS NOT 1
+    if (dice !== 1) {
+      // this is shorthand for currentScore = currentScore + dice
+      currentScore += dice;
+      document.getElementById(`current--${activePlayer}`).textContent =
+        currentScore;
+    } else {
+      // Switch to the other player's turn
+      switchPlayer();
+    }
+    console.log(dice);
   }
-  console.log(dice);
 });
 
 // hold score functionality
 // can access the current score, since it is a global variable
 holdBtn.addEventListener('click', function () {
-  // Add current score to the active player's score
-  // scores[1] = scores[1] + currentScore
-  scores[activePlayer] += currentScore;
-  document.getElementById(`score--${activePlayer}`).textContent =
-    scores[activePlayer];
-  // Check if the player's score is >= 100, if so, finish the game
-  if (scores[activePlayer] >= 100) {
-    // finish the game
-    document
-      .querySelector(`.player--${activePlayer}`)
-      .classList.add('player--winner');
-    document
-      .querySelector(`.player--${activePlayer}`)
-      .classList.remove('player--active');
-  } else {
-    // Switch to the next player
-    switchPlayer();
+  // only exectute if no one has one, run a check to see if anyone has won
+  if (playing) {
+    // Add current score to the active player's score
+    // scores[1] = scores[1] + currentScore
+    scores[activePlayer] += currentScore;
+    document.getElementById(`score--${activePlayer}`).textContent =
+      scores[activePlayer];
+    // Check if the player's score is >= 100, if so, finish the game
+    if (scores[activePlayer] >= 100) {
+      // finish the game
+      playing = false;
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--winner');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove('player--active');
+    } else {
+      // Switch to the next player
+      switchPlayer();
+    }
   }
 });
