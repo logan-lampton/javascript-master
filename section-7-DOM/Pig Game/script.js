@@ -17,25 +17,38 @@ const newGameBtn = document.querySelector('.btn--new');
 const rollBtn = document.querySelector('.btn--roll');
 const holdBtn = document.querySelector('.btn--hold');
 
-// set the elements of the player scores to 0 when the page loads
-playerOneScoreEl.textContent = 0;
-playerTwoScoreEl.textContent = 0;
+// need to define variables for initialize to have them in scope of the full app
+let scores, currentScore, activePlayer, playing;
 
-// hide the dice element when the page loads
-diceEl.classList.add('hidden');
+// initialize game
+const init = function () {
+  // variable for the current score
+  // Needs to be let as we will keep updating it
+  // Needs to be outside of the rollBtn click event so that it isn't reset each roll
+  // reassigning the values below, NOT declaring them
+  currentScore = 0;
+  // set the active player to switch
+  activePlayer = 0;
+  // scores array; will be updated in this array
+  // player 1 at position 0, player 2 at position 1
+  scores = [0, 0];
+  // to denote if the game is won or not
+  // playing is a state variable
+  playing = true;
 
-// variable for the current score
-// Needs to be let as we will keep updating it
-// Needs to be outside of the rollBtn click event so that it isn't reset each roll
-let currentScore = 0;
-// set the active player to switch
-let activePlayer = 0;
-// scores array; will be updated in this array
-// player 1 at position 0, player 2 at position 1
-const scores = [0, 0];
-// to denote if the game is won or not
-// playing is a state variable
-let playing = true;
+  // set the elements of the player scores to 0 when the page loads
+  playerOneScoreEl.textContent = 0;
+  playerTwoScoreEl.textContent = 0;
+  playerOneCurrentEl.textContent = 0;
+  playerTwoCurrentEl.textContent = 0;
+  playerOneEl.classList.remove('player--winner');
+  playerTwoEl.classList.remove('player--winner');
+  playerOneEl.classList.add('player--active');
+  playerTwoEl.classList.remove('player--active');
+  // hide the dice element when the page loads
+  diceEl.classList.add('hidden');
+};
+init();
 
 // function to switch players
 const switchPlayer = function () {
@@ -97,4 +110,24 @@ holdBtn.addEventListener('click', function () {
       switchPlayer();
     }
   }
+});
+
+// Reset the game
+// My solution
+// newGameBtn.addEventListener('click', function () {
+//   currentScore = 0;
+//   activePlayer = 0;
+//   playing = true;
+//   diceEl.classList.add('hidden');
+//   playerOneScoreEl.textContent = 0;
+//   playerTwoScoreEl.textContent = 0;
+//   playerOneCurrentEl.textContent = 0;
+//   playerTwoCurrentEl.textContent = 0;
+//   playerOneEl.classList.add('player--active');
+//   playerTwoEl.classList.remove('player--active');
+// });
+
+// Resetting the game solution from the instructor
+newGameBtn.addEventListener('click', function () {
+  init();
 });
