@@ -34,6 +34,7 @@ let activePlayer = 0;
 // player 1 at position 0, player 2 at position 1
 const scores = [0, 0];
 // to denote if the game is won or not
+// playing is a state variable
 let playing = true;
 
 // function to switch players
@@ -83,6 +84,8 @@ holdBtn.addEventListener('click', function () {
     if (scores[activePlayer] >= 100) {
       // finish the game
       playing = false;
+      //   hide dice when game is won
+      diceEl.classList.add('hidden');
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add('player--winner');
