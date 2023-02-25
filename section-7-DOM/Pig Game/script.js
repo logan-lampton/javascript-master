@@ -34,6 +34,15 @@ let activePlayer = 0;
 // player 1 at position 0, player 2 at position 1
 const scores = [0, 0];
 
+// function to switch players
+const switchPlayer = function () {
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  currentScore = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  playerOneEl.classList.toggle('player--active');
+  playerTwoEl.classList.toggle('player--active');
+};
+
 rollBtn.addEventListener('click', function () {
   // Rolling the dice; generating a number between 1-6
   const dice = Math.floor(Math.random() * 6) + 1;
@@ -48,14 +57,31 @@ rollBtn.addEventListener('click', function () {
     document.getElementById(`current--${activePlayer}`).textContent =
       currentScore;
   } else {
-    // set currentScore back to 0
-    currentScore = 0;
-    document.getElementById(`current--${activePlayer}`).textContent =
-      currentScore;
     // Switch to the other player's turn
-    activePlayer = activePlayer === 0 ? 1 : 0;
-    playerOneEl.classList.toggle('player--active');
-    playerTwoEl.classList.toggle('player--active');
+    switchPlayer();
   }
   console.log(dice);
+});
+
+// hold score functionality
+// can access the current score, since it is a global variable
+holdBtn.addEventListener('click', function () {
+  // Add current score to the active player's score
+  // scores[1] = scores[1] + currentScore
+  scores[activePlayer] += currentScore;
+  document.getElementById(`score--${activePlayer}`).textContent =
+    scores[activePlayer];
+  // Check if the player's score is >= 100, if so, finish the game
+  if (scores[activePlayer] >= 100) {
+    // finish the game
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.add('player--winner');
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.remove('player--active');
+  } else {
+    // Switch to the next player
+    switchPlayer();
+  }
 });
