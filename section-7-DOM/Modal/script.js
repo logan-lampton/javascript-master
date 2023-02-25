@@ -25,8 +25,22 @@ const closeModal = function () {
   overlay.classList.add('hidden');
 };
 
-// "closing" the modal
+// "closing" the modal with the button "X"
 modal.addEventListener('click', closeModal);
 
 // "closing" the modal by clicking anywhere in the overlay
 overlay.addEventListener('click', closeModal);
+
+// "closing" the modal with a key press
+document.addEventListener('keydown', function (e) {
+  // if the key is "esc" and the modal class IS NOT hidden, run the closeModal function
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    // NEED TO CALL THE CODE HERE
+    closeModal();
+  }
+});
+
+// how to see the information on any key pressed
+document.addEventListener('keydown', function (e) {
+  console.log(e);
+});
