@@ -6,14 +6,17 @@ const btnCloseModal = document.querySelector('.close-modal');
 // querySelector would only select the first .show-modal; querySelectorAll selects them all
 const btnsOpenModal = document.querySelectorAll('.show-modal');
 
+// "opening" the modal function
+const openModal = function () {
+  // ".hidden" is only for the selector
+  modal.classList.remove('hidden');
+  // the overlay is a blur in the CSS hidden in the HTML on load
+  overlay.classList.remove('hidden');
+};
+
 // "opening" the modal
 for (let i = 0; i < btnsOpenModal.length; i++) {
-  btnsOpenModal[i].addEventListener('click', function () {
-    // ".hidden" is only for the selector
-    modal.classList.remove('hidden');
-    // the overlay is a blur in the CSS hidden in the HTML on load
-    overlay.classList.remove('hidden');
-  });
+  btnsOpenModal[i].addEventListener('click', openModal);
 }
 
 // "closing" the modal function
