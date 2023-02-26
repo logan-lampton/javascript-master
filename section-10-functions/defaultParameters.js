@@ -31,4 +31,3 @@ createBooking('LM365', 5);
 // if you call undefined in one of the parameters it will return the default; this is a good way to set the value of a later argument; here we skip the number of passengers
 createBooking('FL712', undefined, 500);
 
-console.log(bookings);
