@@ -43,3 +43,28 @@ document.body.addEventListener('click', high5);
 // Abstraction is hiding the detail of some code to allow us to look at a problem on a higher level; Ex: instead of a whole code block, we just see the name for the function
 // Higher-order functions DELEGATE tasks to lower-level functions (they aren't really called lower-level functions)
 // The higher-order functions don't know how to do what the lower-level functions are doing, which is why it needs for them to be called inside of it
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+// declaring a new function that runs the greet function with the greeting "Hey"
+const greeterHey = greet('Hey');
+// The greeterHey function is called below on different names, calling the greet function within it
+greeterHey('Jonas');
+greeterHey('Logan');
+
+// calling the greet function with the greeting of "Hello" and the name of "Jonas"
+greet('Hello')('Jonas');
+
+// This is important for the paradigm of functional coding
+
+// Challenge to rewrite the greet function with arrow functions
+// To recap, greetArrow is a function that takes a greeting as an arguement;
+// It then returns (=>) a second anonymous function with the argument of name
+// That function logs the greeting and name to the console
+const greetArrow = greeting => name => console.log(`${greeting} ${name}`);
+
+greetArrow('Sup')('Charlie');
