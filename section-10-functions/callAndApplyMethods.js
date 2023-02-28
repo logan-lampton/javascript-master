@@ -48,3 +48,51 @@ const flightData = [583, 'George Carlin'];
 book.apply(eurowings, flightData);
 // The applied method is not used very often anymore; Now we use the spread operator
 book.call(eurowings, ...flightData);
+// -----------------------------------------------------------------------------------
+
+// Bind Method
+// this creates a new function where the "this" keyword is eurowings, It WILL NOT call the book function
+const bookEW = book.bind(eurowings);
+// would just use the same parameters as the initial book function
+bookEW(23, 'Steven Williams');
+// Since this copied function pushes to the bookings array, the bookings array now includes flight: "EW23" and name: "Steven Williams"
+
+// Can make new functions for each of the airlines with bind
+const bookLH = book.bind(lufthansa);
+bookLH(543, 'Big Maude');
+
+// You can make a function that takes in a function and part of its arguments using .bind method
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23('Peter Gabriel');
+
+// Partial applications mean that part of the arguments are already set
+
+// With Event Listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+// the this keyword allows points to the element of the handler function
+// SO just calling lufthansa.buyPlane in the event handler, makes this keyowrd into the button element
+// We use .bind to make a copy of the function
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// Partial Application
+// anonymous function that takes in rate and tax as arguments
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+// forumla so that the tax is always 20%
+const addVAT = addTax.bind(null, 0.2);
+console.log(addVAT(200));
+
+// Challenge: Create a function that returns the same value as the addVAT function
+// My solution
+const addVATChallenge = value => {
+  return addTax(0.2, value);
+};
+console.log(addVATChallenge(200));
