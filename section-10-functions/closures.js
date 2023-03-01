@@ -76,3 +76,56 @@ booker();
 
 // We CAN look at closures in the console
 console.dir(booker);
+
+// -------------------------------------------------------------------------------------
+// A Closer Look at Closures
+
+// Example 1
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+// You have to call f for g to return anything
+g();
+f();
+
+// Even though f was declared at the global scope it is able to have access to the variable a within function g after it has been removed from the call stack
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+h();
+// f is a different function here as it was reassigned by function h
+f();
+console.dir(f);
+
+// Example 2
+const boardPassengers = function (n, wait) {
+  // passengers board in groups of 3
+  const perGroup = n / 3;
+  //   creating a timer
+  //   a timer function using setTimeout is a callback function; it is called later, specifically after the amount of milliseconds we specify have passed
+  //   We want setTimeout to wait for the time of "wait" * 1000 milliseconds, so 1 second for each number in "wait"
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers.`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers.`);
+  }, wait * 1000);
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+// A CLOSURE is what gives the setTimeout function the ability to use the variables and arguments in the boardPassengers function
+
+// If it wasn't for the closure, boardPassengers would use the perGroup re-assignment below, instead of the assignment of n / 3 from boardPassengers
+const perGroup = 1000;
+
+boardPassengers(180, 3)
+
+
