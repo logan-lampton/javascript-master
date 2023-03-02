@@ -62,7 +62,24 @@ console.log(arr);
 console.log(arr2);
 
 // Join method
-console.log(letters.join("-"))
-console.log(arr)
+console.log(letters.join('-'));
+console.log(arr);
 // Join does NOTE affect the original arrays
 // Join takes an argument of what you would like between each element when you combine them.
+
+// --------------------------------------------------------------
+// New At Method
+
+const arr3 = [23, 11, 64];
+// the at method returns the value at that exact index
+console.log(arr3.at(0));
+// This returns the 0 index (23)
+
+// At method instead of bracket notation
+// Below are two more traditional ways to call the last element in an array
+console.log(arr3[arr3.length - 1]);
+// this would return the last element in an array
+console.log(arr3.slice(-1)[0]);
+
+// Newer method!
+console.log(arr.at(-1));
