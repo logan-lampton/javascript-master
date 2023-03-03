@@ -83,3 +83,43 @@ console.log(arr3.slice(-1)[0]);
 
 // Newer method!
 console.log(arr.at(-1));
+// --------------------------------------------------------------
+
+// forEach Method
+
+// older "for of" format
+// entries is another array method
+// Deconstructing into 2 variables, the index and movement variable
+for (const [i, movement] of movements.entries()) {
+  if (movement > 0) {
+    console.log(`Movement ${i + 1} You deposited ${movement}`);
+  } else {
+    console.log(`Movement ${i + 1} You withdrew ${Math.abs(movement)}`);
+  }
+}
+
+console.log('forEach -----------------------------------------');
+
+// forEach Format
+
+// forEach requires a callback function
+// forEach is a higher order function
+// forEach calls the callback function, WE don't
+
+// forEach loops around the array, and FOR EACH loop it executes the callback function
+// each loop it recieves the current element of the array as an argument (which we called "movement" below)
+
+// forEach passes in arguements of (the current element, the index, and the array)
+// Can just pass in the current element, or two of the arguments if you want; the ORDER DOES MATTER THOUGH
+movements.forEach(function (movement, i, arr) {
+  if (movement > 0) {
+    console.log(`Movement ${i + 1} You deposited ${movement}`);
+  } else {
+    console.log(`Movement ${i + 1} You withdrew ${Math.abs(movement)}`);
+  }
+});
+
+// You can't break out of a forEach loop
+// IT WILL loop over the entire array
+// Use for-of if you need to break out of a function
+// Otherwise, using forEach is a matter of preference
