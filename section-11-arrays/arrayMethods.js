@@ -123,3 +123,21 @@ movements.forEach(function (movement, i, arr) {
 // IT WILL loop over the entire array
 // Use for-of if you need to break out of a function
 // Otherwise, using forEach is a matter of preference
+// --------------------------------------------------------------
+
+// forEach with Maps and Sets
+
+// Map
+// also a callback function with 3 arguments
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+// Set
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(currenciesUnique);
+currenciesUnique.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+// For a Set, the key and value will be the same, since Sets don't have keys.
+// We can use "_" as a variable, as that denotes that it is an unimportant variable without any real value
