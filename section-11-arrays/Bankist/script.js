@@ -61,3 +61,23 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movements) {
+  // mov is the current value in the array that we are looping over, i is the index of that value
+  movements.forEach(function (mov, i) {
+    // variable for the ternary to see if the mov is a deposit or withdrawl
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    // template literals are perfect for making blocks of HTML
+    const html = `
+    <div class="movements__row">
+    <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+    <div class="movements__value">${mov}</div>
+    </div>
+    `;
+    // insertAdjacentHTML method requires 2 arguments: 1. where we want to insert the HTML within the element it is being called on 2. the variable name for the HTML block that we want to insert
+    containerMovements.insertAdjacentHTML("afterbegin", html);
+    // "afterend" shows the entries from last to first
+  });
+};
+displayMovements(account1.movements);
