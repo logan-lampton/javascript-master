@@ -92,6 +92,29 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+// Calculate Display Summary
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const outgoing = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(outgoing)}€`;
+
+  // we state that the interest is 1.2%
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => deposit * 0.012)
+    // saying that the interest only kicks in on deposits where the interest would be at least one dollar
+    .filter((int) => int >= 1)
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+calcDisplaySummary(account1.movements);
+
 // Computing usernames
 // username is just the first letter.toLowerCase() of each word in the name
 const createUsernames = function (accs) {
@@ -110,3 +133,6 @@ createUsernames(accounts);
 console.log(accounts);
 
 // if we don't want to create a new array, it can be better to use a forEach loop
+
+// It's bad practice to chain methods that mutate the original array
+// Ex: Don't chain splice or reverse methods
