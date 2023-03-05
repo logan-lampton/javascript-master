@@ -52,3 +52,19 @@ const movementsDescriptions = movements.map((mov, i) => {
 });
 console.log(movementsDescriptions);
 // we don't call the return in the map method, the map method calls it on each element in a copy of the original array
+// -------------------------------------------------------------------
+
+// Filter method
+// create a deposits array
+// only returns truthy, so only elements where mov > 0
+const deposits = movements.filter(function (mov) {
+    return mov > 0
+})
+
+console.log(deposits);
+
+// can't chain for loops, which is why chaining array methods is great
+
+// withdrawls using filter method and an arrow function
+const withdrawls = movements.filter((mov) => mov < 0)
+console.log(withdrawls)
