@@ -58,13 +58,35 @@ console.log(movementsDescriptions);
 // create a deposits array
 // only returns truthy, so only elements where mov > 0
 const deposits = movements.filter(function (mov) {
-    return mov > 0
-})
+  return mov > 0;
+});
 
 console.log(deposits);
 
 // can't chain for loops, which is why chaining array methods is great
 
 // withdrawls using filter method and an arrow function
-const withdrawls = movements.filter((mov) => mov < 0)
-console.log(withdrawls)
+const withdrawls = movements.filter(mov => mov < 0);
+console.log(withdrawls);
+// -------------------------------------------------------------------
+
+// Reduce Method
+// The accumulator is like a snowball
+// The first argument is the accumulator
+// The accumulator is the value that we keep adding to on each loop
+const balance = movements.reduce(function (acc, cur, i, arr) {
+  // in this case, each loop returns the growing acc value and adds the current value to it
+  // the console log helps to show the acc at each iteration
+  console.log(`Iteration ${i}: ${acc}`);
+  return acc + cur;
+}, 0);
+// You declare when you want to start the accumulator at the end of the function; in this case we are starting at 0
+
+console.log(balance);
+
+// The code below is another way to write what the reduce method is doing
+// For loops always need external variables
+let balance2 = 0;
+for (const mov of movements) {
+  balance2 += mov;
+}
