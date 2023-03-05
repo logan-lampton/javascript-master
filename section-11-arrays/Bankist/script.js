@@ -61,6 +61,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// Display movements
 const displayMovements = function (movements) {
   // mov is the current value in the array that we are looping over, i is the index of that value
   movements.forEach(function (mov, i) {
@@ -69,15 +70,32 @@ const displayMovements = function (movements) {
     // template literals are perfect for making blocks of HTML
     const html = `
     <div class="movements__row">
-    <div class="movements__type movements__type--${type}">${
-      i + 1
-    } ${type}</div>
+    <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
     <div class="movements__value">${mov}</div>
     </div>
     `;
     // insertAdjacentHTML method requires 2 arguments: 1. where we want to insert the HTML within the element it is being called on 2. the variable name for the HTML block that we want to insert
-    containerMovements.insertAdjacentHTML("afterbegin", html);
+    containerMovements.insertAdjacentHTML('afterbegin', html);
     // "afterend" shows the entries from last to first
   });
 };
 displayMovements(account1.movements);
+
+// Computing usernames
+// username is just the first letter.toLowerCase() of each word in the name
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    // to create a new property called username on each acc element in the existing array
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(word => word[0])
+      .join('');
+  });
+};
+// You run the function on the existing array
+createUsernames(accounts);
+// Then you console.log the original array to see the changes made to it with the forEach method
+console.log(accounts);
+
+// if we don't want to create a new array, it can be better to use a forEach loop

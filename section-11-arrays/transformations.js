@@ -45,7 +45,10 @@ console.log(movementsUSDArrow);
 
 // want to return in maps, so that the values are pushed to the new array
 // Totally fine to have more than one return statement SO LONG AS ONLY ONE OF THEM RETURNS (for example, only one would in the if, else statement)
-const movementsDescriptions = movements.map((mov, i, arr) => {
-    return `Movement ${i + 1}: You ${mov > 0 ? `Deposited` : `Withdrew`} $${Math.abs(mov)}`;
-  });
-console.log(movementsDescriptions)
+const movementsDescriptions = movements.map((mov, i) => {
+  return `Movement ${i + 1}: You ${
+    mov > 0 ? `Deposited` : `Withdrew`
+  } $${Math.abs(mov)}`;
+});
+console.log(movementsDescriptions);
+// we don't call the return in the map method, the map method calls it on each element in a copy of the original array
