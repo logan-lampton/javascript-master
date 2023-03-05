@@ -61,6 +61,17 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// Current Balance
+// using reduce method
+// My version
+const calcDisplayBalance = function (account) {
+  const balance = account.movements.reduce(function (acc, cur) {
+    return acc + cur;
+  }, 0);
+  labelBalance.textContent = `${balance}€`;
+};
+calcDisplayBalance(account1);
+
 // Display movements
 const displayMovements = function (movements) {
   // mov is the current value in the array that we are looping over, i is the index of that value
@@ -71,7 +82,7 @@ const displayMovements = function (movements) {
     const html = `
     <div class="movements__row">
     <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
-    <div class="movements__value">${mov}</div>
+    <div class="movements__value">${mov} €</div>
     </div>
     `;
     // insertAdjacentHTML method requires 2 arguments: 1. where we want to insert the HTML within the element it is being called on 2. the variable name for the HTML block that we want to insert
@@ -99,17 +110,3 @@ createUsernames(accounts);
 console.log(accounts);
 
 // if we don't want to create a new array, it can be better to use a forEach loop
-
-// Current Balance
-// using reduce method
-
-// My version
-const calcPrintBalance = function (account) {
-  const balance = account.movements.reduce(function (acc, cur) {
-      console.log(acc)
-      return acc + cur;
-  });
-  labelBalance.innerHTML = balance;
-};
-
-calcPrintBalance(account1);

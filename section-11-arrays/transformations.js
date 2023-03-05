@@ -90,3 +90,15 @@ let balance2 = 0;
 for (const mov of movements) {
   balance2 += mov;
 }
+
+// Maximum value
+// Using reduce method
+const maximumValue = movements.reduce(function (acc, mov) {
+  if (acc > mov) {
+    return acc;
+  } else {
+    return mov;
+  }
+}, movements[0]);
+// the function above has no arguments
+console.log(maximumValue);
