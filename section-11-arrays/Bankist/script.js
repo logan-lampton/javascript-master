@@ -99,3 +99,17 @@ createUsernames(accounts);
 console.log(accounts);
 
 // if we don't want to create a new array, it can be better to use a forEach loop
+
+// Current Balance
+// using reduce method
+
+// My version
+const calcPrintBalance = function (account) {
+  const balance = account.movements.reduce(function (acc, cur) {
+      console.log(acc)
+      return acc + cur;
+  });
+  labelBalance.innerHTML = balance;
+};
+
+calcPrintBalance(account1);
