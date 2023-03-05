@@ -33,3 +33,23 @@ const averageAge = inHumanYears1.reduce(function (acc, year) {
   return (acc + year) / inHumanYears1.length;
 }, inHumanYears1[0]);
 console.log(averageAge);
+// -------------------------------------------------------------------
+
+// Instructor solutions
+
+// Ideally we would make a new array for this, so using the map method is best
+
+const calcAverageHumanAge = function (ages) {
+  const humanAges = ages.map(age => {
+    return age <= 2 ? age * 2 : 16 + age * 4;
+  });
+  const adults = humanAges.filter(years => years >= 18);
+  console.log(adults);
+  const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+  return average;
+};
+
+const avg1 = calcAverageHumanAge(dataSetOne);
+const avg2 = calcAverageHumanAge(dataSetTwo);
+
+console.log(avg1, avg2);
