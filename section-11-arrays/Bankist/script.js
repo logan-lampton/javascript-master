@@ -109,7 +109,7 @@ const calcDisplaySummary = function (movements) {
     .filter(mov => mov > 0)
     .map(deposit => deposit * 0.012)
     // saying that the interest only kicks in on deposits where the interest would be at least one dollar
-    .filter((int) => int >= 1)
+    .filter(int => int >= 1)
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${interest}€`;
 };
@@ -136,3 +136,26 @@ console.log(accounts);
 
 // It's bad practice to chain methods that mutate the original array
 // Ex: Don't chain splice or reverse methods
+
+// The Find Method
+// The find method also takes a callback function
+// The find method returns only the first thing that satisfies the conditions
+
+// if the below is a one-line arrow function, I don't need to tell it to return the operation
+const firstWithdrawl = account1.movements.find(mov => mov < 0);
+
+// below is as a normal function
+// const firstWithdrawl = account1.movements.find(function (mov) {
+//   return mov < 0;
+// });
+console.log(firstWithdrawl);
+
+// while similar to the filter method in some ways, the find method differs in other ways
+// 1. Filter method filters ALL the elements that match the conditions; the find method only returns the first element that matches the condtions
+// 2. The filter method returns a new array, while the find method ONLY returns the single element
+
+// It is very useful to use the find method on arrays to find an object that matches a certain property (Example below is to search for a certain name of an account owner to return the object that includes that owner)
+console.log(accounts);
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+
