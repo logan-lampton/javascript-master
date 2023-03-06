@@ -159,3 +159,21 @@ console.log(accounts);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
 
+// -----------------------------------------------------------------
+// Login event handlers
+let currentAccount;
+
+const handleLogin = function (e) {
+  e.preventDefault();
+  console.log('LOGIN');
+
+  // the .value property grabs what is typed into the input field that the inputLoginUsername variable is assigned to
+  // We are using the acc's username property that we created in the createUsernames function, since the username is what the user will be typing into that field 
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+};
+
+// hitting Enter in a form, will count as a click too
+btnLogin.addEventListener('click', handleLogin);
