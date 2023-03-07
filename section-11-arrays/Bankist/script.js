@@ -64,11 +64,12 @@ const inputClosePin = document.querySelector('.form__input--pin');
 // Current Balance
 // using reduce method
 // My version
+// immediatly set the balance property on the account object
 const calcDisplayBalance = function (account) {
-  const balance = account.movements.reduce(function (acc, cur) {
+  account.balance = account.movements.reduce(function (acc, cur) {
     return acc + cur;
   }, 0);
-  labelBalance.textContent = `${balance}€`;
+  labelBalance.textContent = `${account.balance}€`;
 };
 
 // Display movements
@@ -161,7 +162,6 @@ let currentAccount;
 
 const handleLogin = function (e) {
   e.preventDefault();
-  console.log('LOGIN');
 
   // the .value property grabs what is typed into the input field that the inputLoginUsername variable is assigned to
   // We are using the acc's username property that we created in the createUsernames function, since the username is what the user will be typing into that field
@@ -169,7 +169,6 @@ const handleLogin = function (e) {
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
-  console.log(currentAccount);
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // Display UI and welcome message
     labelWelcome.textContent = `Welcome back, ${
@@ -197,6 +196,10 @@ btnLogin.addEventListener('click', handleLogin);
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
   const amount = Number(inputTransferAmount.value);
-  const recieverAccount = accounts.find(acc => acc.username === inputTransferTo.value);
-  console.log(amount, recieverAccount)
+  const recieverAccount = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  console.log(amount, recieverAccount);
+  // Make sure that the user has the money to transfer
+  // if(amount > 0 && account.)
 });
