@@ -192,3 +192,11 @@ const handleLogin = function (e) {
 
 // hitting Enter in a form, will count as a click too
 btnLogin.addEventListener('click', handleLogin);
+
+// transfer between accounts
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const recieverAccount = accounts.find(acc => acc.username === inputTransferTo.value);
+  console.log(amount, recieverAccount)
+});
