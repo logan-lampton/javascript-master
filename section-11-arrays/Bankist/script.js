@@ -70,7 +70,6 @@ const calcDisplayBalance = function (account) {
   }, 0);
   labelBalance.textContent = `${balance}€`;
 };
-calcDisplayBalance(account1);
 
 // Display movements
 const displayMovements = function (movements) {
@@ -90,30 +89,27 @@ const displayMovements = function (movements) {
     // "afterend" shows the entries from last to first
   });
 };
-displayMovements(account1.movements);
 
 // Calculate Display Summary
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (account) {
+  const incomes = account.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`;
 
-  const outgoing = movements
+  const outgoing = account.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(outgoing)}€`;
 
-  // we state that the interest is 1.2%
-  const interest = movements
+  const interest = account.movements
     .filter(mov => mov > 0)
-    .map(deposit => deposit * 0.012)
+    .map(deposit => (deposit * account.interestRate) / 100)
     // saying that the interest only kicks in on deposits where the interest would be at least one dollar
     .filter(int => int >= 1)
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
+  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
 };
-calcDisplaySummary(account1.movements);
 
 // Computing usernames
 // username is just the first letter.toLowerCase() of each word in the name
@@ -168,12 +164,31 @@ const handleLogin = function (e) {
   console.log('LOGIN');
 
   // the .value property grabs what is typed into the input field that the inputLoginUsername variable is assigned to
-  // We are using the acc's username property that we created in the createUsernames function, since the username is what the user will be typing into that field 
+  // We are using the acc's username property that we created in the createUsernames function, since the username is what the user will be typing into that field
+  // If no element matches the find condition, it returns: undefined
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
   console.log(currentAccount);
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and welcome message
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    containerApp.style.opacity = 100;
+    // Clear the input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    // The below makes the input field lose focus (and remove the cursor)
+    inputLoginPin.blur();
+    // Call Display movements for the current account
+    displayMovements(currentAccount.movements);
+    // Call Display balance for the current account
+    calcDisplayBalance(currentAccount);
+    // Call Display summary for the current account
+    calcDisplaySummary(currentAccount);
+  }
 };
+// by writing currentAccount?.pin (optional chaining) we will only read the pin property if the currentAccount exits. This removes the error that would otherwise be thrown
 
 // hitting Enter in a form, will count as a click too
 btnLogin.addEventListener('click', handleLogin);
