@@ -73,9 +73,14 @@ const calcDisplayBalance = function (account) {
 };
 
 // Display movements
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = 0) {
   // mov is the current value in the array that we are looping over, i is the index of that value
-  movements.forEach(function (mov, i) {
+
+  // need to use slice method to create a copy of the movements array, so that we don't mutate the original array with the sort method
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  // need to use the movs variable we created for sorting
+  movs.forEach(function (mov, i) {
     // variable for the ternary to see if the mov is a deposit or withdrawl
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     // template literals are perfect for making blocks of HTML
@@ -280,3 +285,16 @@ const overallBalance2 = accounts
   .flatMap(account => account.movements)
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overallBalance2);
+
+// Sort button
+
+// Need to use a STATE variable to see if we are sorting the movements or not
+let sorted = false;
+
+// When clicked, it prevents the default; then it calls the displayMovements function with the arguements of the currentAccount's movements and the second argument of true, so that the sort variable is set to true
+// when we click the sort button, we want the OPPOSITE of "sorted"; it starts false, so make it true. The toggle will then go from true to false to unsort
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted
+});
