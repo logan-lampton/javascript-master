@@ -46,3 +46,17 @@ const deposit = mov => mov > 0;
 console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
+// -----------------------------------------------------------------
+
+// Flat and Flatmap Methods
+// Flat method makes all the elements into one array (ex: if they were in subarrays)
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+// an even deeper array
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// flat method only goes one level deep when flattening an array
+console.log(arrDeep.flat());
+// adding the argument of how many levels deep flattens the array down to that level
+console.log(arrDeep.flat(2));
+

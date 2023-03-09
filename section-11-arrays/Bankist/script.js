@@ -255,3 +255,28 @@ btnClose.addEventListener('click', function (e) {
   }
   inputCloseUsername.value && inputClosePin.value === '';
 });
+
+// Creating an array of all the movements
+const accountMovements = accounts.map(account => account.movements);
+const allMovements = accountMovements.flat();
+const totalAllMovements = allMovements.reduce(function (acc, mov) {
+  return acc + mov;
+}, 0);
+console.log(allMovements);
+console.log(totalAllMovements);
+
+// chained much more succinct version
+const overallBalance = accounts
+  .map(account => account.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
+// Using a map first and then flattening the result is a pretty common operation
+
+// flatMap version of the array of all movements
+// flatMap only goes one level deep
+// flatMap automatically flattens the results of a map method
+const overallBalance2 = accounts
+  .flatMap(account => account.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance2);
