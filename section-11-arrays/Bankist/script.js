@@ -160,6 +160,16 @@ console.log(account);
 // Login event handlers
 let currentAccount;
 
+// update UI
+const updateUI = function (account) {
+  // Call Display movements for the current account
+  displayMovements(account.movements);
+  // Call Display balance for the current account
+  calcDisplayBalance(account);
+  // Call Display summary for the current account
+  calcDisplaySummary(account);
+};
+
 const handleLogin = function (e) {
   e.preventDefault();
 
@@ -179,12 +189,9 @@ const handleLogin = function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     // The below makes the input field lose focus (and remove the cursor)
     inputLoginPin.blur();
-    // Call Display movements for the current account
-    displayMovements(currentAccount.movements);
-    // Call Display balance for the current account
-    calcDisplayBalance(currentAccount);
-    // Call Display summary for the current account
-    calcDisplaySummary(currentAccount);
+
+    // Update the UI
+    updateUI(currentAccount);
   }
 };
 // by writing currentAccount?.pin (optional chaining) we will only read the pin property if the currentAccount exits. This removes the error that would otherwise be thrown
@@ -199,7 +206,19 @@ btnTransfer.addEventListener('click', function (e) {
   const recieverAccount = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
-  console.log(amount, recieverAccount);
+  inputTransferAmount.value = inputTransferTo.value = '';
+
   // Make sure that the user has the money to transfer
-  // if(amount > 0 && account.)
+  // using optional chaining with the recieverAccount to see if it exists before checking its username not equal to the current username
+  // recieverAccount tests that the username is saved as an account
+  if (
+    amount > 0 &&
+    recieverAccount &&
+    currentAccount.balance >= amount &&
+    recieverAccount?.username !== currentAccount.username
+  ) {
+    currentAccount.movements.push(-amount);
+    recieverAccount.movements.push(amount);
+    updateUI(currentAccount);
+  }
 });
