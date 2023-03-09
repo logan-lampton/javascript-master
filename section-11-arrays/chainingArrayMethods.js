@@ -59,4 +59,46 @@ const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
 console.log(arrDeep.flat());
 // adding the argument of how many levels deep flattens the array down to that level
 console.log(arrDeep.flat(2));
+// --------------------------------------------------------------
 
+// Sorting Arrays
+// Below is using the built in JS sort method
+const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+console.log(owners.sort());
+// the sort method mutates the original array
+console.log(owners);
+
+// The result of the sort method on numbers is pretty weird
+console.log(movements);
+
+// ASCENDING
+// return < 0, A will be before B (keep order)
+// return > 0, B will be before A (switch order)
+// return 1 means to switch the order
+// return -1 means to keep the order
+movements.sort((a, b) => {
+  if (a > b) {
+    return 1;
+  } else if (b > a) {
+    return -1;
+  }
+});
+console.log(movements);
+
+// DECENDING
+// (Greatest values to least values)
+movements.sort((a, b) => {
+  if (a > b) {
+    return -1;
+  } else if (a < b) {
+    return 1;
+  }
+});
+console.log(movements);
+
+// IMPROVED VERSION of Ascending
+movements.sort((a, b) => a - b);
+// We know that a - b will be a positive number if a is greater than b
+console.log(movements);
+
+// DON'T USE THE SORT METHOD WITH A MIXED ARRAY OF NUMBERS AND STRINGS
