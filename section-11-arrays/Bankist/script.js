@@ -223,6 +223,20 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+  // If the ammount is greater than 0 and the current account has a ANY movement greater or equal to 10% of the loan amount being requested
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // add the movement
+    currentAccount.movements.push(amount);
+    // Update the UI
+    updateUI(currentAccount);
+  }
+  // clear the loan input box after the click
+  inputLoanAmount.value = '';
+});
+
 // Close Account
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();

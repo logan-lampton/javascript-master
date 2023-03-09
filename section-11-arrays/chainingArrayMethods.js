@@ -23,14 +23,26 @@ console.log(totalDepositsInUSD);
 
 // EQAULITY
 // Includes checks only for equality
-console.log(movements)
-console.log(movements.includes(-130))
+console.log(movements);
+console.log(movements.includes(-130));
 
 // CONDITION
 // Some method can specify a condition
 const anyDeposits = movements.some(function (mov) {
-    return mov > 1500
-})
-console.log(anyDeposits)
+  return mov > 1500;
+});
+console.log(anyDeposits);
 
-console.log(movements.some(mov => mov === -130))
+console.log(movements.some(mov => mov === -130));
+
+// Every Method
+// EVERY element must satisfy the condition for it to return true
+console.log(movements.every(mov => typeof mov === 'number'));
+
+// Seperate callback
+const deposit = mov => mov > 0;
+// can use that function for any method that requires a callback method
+// Don't expect it to work with methods that don't take in callback functions
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
