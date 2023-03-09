@@ -298,3 +298,15 @@ btnSort.addEventListener('click', function (e) {
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted
 });
+
+// PRACTICE FOR ARRAYS; NOT RELATED TO APP FUNCTIONALITY
+// Maps and sets and more are iterables
+// querySelectorAll returns a node list; but this is not a real array, so doesn't have most array methods
+// To use array methods, we need to transform a node list into an array using the FROM method
+labelBalance.addEventListener("click", function () {
+  const movementsUI = Array.from(document.querySelectorAll('.movements__value'),
+  // second argument
+  el => Number(el.textContent.replace("€", ""))
+  )
+  console.log(movementsUI)
+})
