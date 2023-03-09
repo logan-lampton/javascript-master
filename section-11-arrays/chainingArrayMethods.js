@@ -19,4 +19,18 @@ console.log(totalDepositsInUSD);
 // chaining methods can make it more difficult to debug
 // -----------------------------------------------------------------
 
+// Includes and Some Methods
 
+// EQAULITY
+// Includes checks only for equality
+console.log(movements)
+console.log(movements.includes(-130))
+
+// CONDITION
+// Some method can specify a condition
+const anyDeposits = movements.some(function (mov) {
+    return mov > 1500
+})
+console.log(anyDeposits)
+
+console.log(movements.some(mov => mov === -130))
