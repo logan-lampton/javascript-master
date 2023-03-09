@@ -222,3 +222,22 @@ btnTransfer.addEventListener('click', function (e) {
     updateUI(currentAccount);
   }
 });
+
+// Close Account
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (
+    currentAccount.username === inputCloseUsername.value &&
+    currentAccount.pin === Number(inputClosePin.value)
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    // delete account
+    accounts.splice(index, 1);
+    // indexOf can only search for a value THAT IS IN THE ARRAY
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value && inputClosePin.value === '';
+});
