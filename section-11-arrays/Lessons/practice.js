@@ -95,3 +95,38 @@ const total = accounts
     { deposits: 0, withdrawls: 0 }
   );
 console.log(total);
+
+// reduce method can do anything that map, filter methods, and more methods!
+
+// Exercise 4
+// Convert to "Title Case", like most words capitalized, like for book titles
+// The capitalize function called on titleCase at the final return is to make sure that the first word is capitalized EVEN IF it is an exception word
+const convertTitleCase = function (title) {
+  const capitalize = word => word[0].toUpperCase() + word.slice(1)
+  
+    const exceptions = ['a', 'an', 'the', 'but', 'or', 'on', 'in', 'with', 'of', "and"];
+
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word => {
+      return !exceptions.includes(word)
+        ? capitalize(word)
+        : word;
+    })
+    .join(' ');
+  return capitalize(titleCase);
+};
+console.log(convertTitleCase('and this is a nice title'));
+console.log(convertTitleCase('this is a DUMB title'));
+console.log(
+  convertTitleCase(
+    'did you hear the one about the software engineer from the moon?'
+  )
+);
+console.log(convertTitleCase('Totally space bats'));
+console.log(
+  convertTitleCase(
+    'this book and the accompanying pamphlet are dry; you were warned'
+  )
+);
