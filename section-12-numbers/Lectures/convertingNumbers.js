@@ -139,3 +139,42 @@ const PI = 3.1415;
 console.log(Number('230_000'));
 // returns NaN
 // YOU SHOULD NOT USE THE UNDERSCORE IN AN API OR WHEN PARSING STRINGS
+// --------------------------------------------------------------------
+
+// bigInt is a PRIMATIVE DATATYPE
+// bigInt was added in ES2020
+// There is a max safe integer in JS
+// JS can't reliably calculate numbers higher than the max number
+// An API could have a number bigger than the max safe number
+// bigInt can store any number, NO LIMIT IN SIZE
+console.log(1873726365736263615353675893726372458937856738893957837n);
+// The constructor function is actually not as accurate as the number gets bigger, so putting the n at the end is best
+console.log(BigInt(1873726365736263615353675893726372458937856738893957837));
+
+// BigInt Operations
+console.log(10000n + 10000n);
+// You would do operations the exact same with BigInt numbers
+// BUT you CAN'T do operations with bigInt numbers and regular numbers
+// To mix regular numbers with BigInt, you need to use the BigInt() function to change the number to a bigInt number
+const huge = 2043945739293482903798378947n;
+const num = 23;
+console.log(huge * BigInt(num));
+
+// for figuring out equality, BigInt numbers are not the same as the same number not BigInt with ===, but they are relatively equal (==)
+console.log(20n === 20);
+// returns false
+console.log(20n == 20);
+// returns true
+console.log(20n == "20")
+// returns true
+
+console.log(huge + "is REALLY BIG!")
+// Returns a concatenated string
+
+// You CAN'T run math methods on a BigInt number
+
+// BigInt math operations with other BigInt return the closest number (floored) and don't ever show decimal places
+console.log(11n / 3n)
+// returns 3n
+console.log(11 / 3)
+// returns 3.66666666
