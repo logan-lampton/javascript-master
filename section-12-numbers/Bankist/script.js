@@ -248,3 +248,19 @@ btnSort.addEventListener('click', function (e) {
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
 });
+
+// -------------------------------------------------------------------
+// remainder example for lesson
+
+// NOTE .movements__row WILL SHOW AS A DIFFERENT CLASS than .movements_row
+function rowColor() {
+  [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+    if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+    if (i % 3 === 0) {
+      row.style.backgroundColor = 'purple';
+    }
+  });
+}
+
+// labelBalance.addEventListener('click', rowColor);
+labelBalance.addEventListener('click', rowColor);

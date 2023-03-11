@@ -96,3 +96,24 @@ console.log(2.7.toFixed(3))
 // strings are returned as NUMBERS with toFixed
 console.log(+(2.345).toFixed(2))
 // returns 2.35 as A NUMBER
+// ---------------------------------------------------------------------
+
+// Remainder Operator
+console.log(5 % 2)
+// returns 1
+// This is because 5 / 2 is 2.5, so 2 goes into 5 2 times, with a remainder of 1
+console.log(8 % 3)
+// returns 2
+// This is because 3 * 2 is 6, with a remainder of 2 left if 3 goes into 8
+console.log(6 % 2)
+// returns 0
+// Because 6 can be exactly divided by 2
+
+// Test to see if something is even using remainder operator
+const isEven = n => n % 2 === 0
+console.log(isEven(8))
+// returns true
+console.log(isEven(11))
+// returns false
+
+
