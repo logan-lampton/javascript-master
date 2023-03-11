@@ -62,24 +62,25 @@ console.log(Math.min(5, 18, 23, 11, 2));
 console.log(Math.PI * Number.parseFloat('10px') ** 2);
 
 // Random numbers!
-console.log(Math.floor(Math.random() * 6) + 1)
+console.log(Math.floor(Math.random() * 6) + 1);
 // Returns between 1 and 6
 // Below is another example using another methodology
-const randomInt = (min, max) => Math.trunc(Math.random() * (max - min) + 1) + min
-console.log(randomInt(10, 20))
+const randomInt = (min, max) =>
+  Math.trunc(Math.random() * (max - min) + 1) + min;
+console.log(randomInt(10, 20));
 // Returns a number between 10 and 20
 
 // Rounding Integers!
-console.log(Math.trunc(23.3))
+console.log(Math.trunc(23.3));
 // returns 23
 // trunc always does the math floor, so 23.9 would also return 23
-console.log(Math.round(23.9))
+console.log(Math.round(23.9));
 // returns 24
 // rounds to the nearest number
-console.log(Math.ceil(23.3))
+console.log(Math.ceil(23.3));
 // returns 24
 // Math ceil rounds up ALWAYS
-console.log(Math.floor(23.3))
+console.log(Math.floor(23.3));
 // returns 23
 // Math floor round down ALWAYS
 // All these methods do type coercion too!
@@ -88,32 +89,53 @@ console.log(Math.floor(23.3))
 
 // Rounding decimals!
 // Decimals are known as floating point numbers
-console.log((2.7).toFixed(0))
+console.log((2.7).toFixed(0));
 // returns 3 as a STRING
-console.log(2.7.toFixed(3))
+console.log((2.7).toFixed(3));
 // returns 2.700 as A STRING
 // the argument in toFixed is for how many floating point places there should be
 // strings are returned as NUMBERS with toFixed
-console.log(+(2.345).toFixed(2))
+console.log(+(2.345).toFixed(2));
 // returns 2.35 as A NUMBER
 // ---------------------------------------------------------------------
 
 // Remainder Operator
-console.log(5 % 2)
+console.log(5 % 2);
 // returns 1
 // This is because 5 / 2 is 2.5, so 2 goes into 5 2 times, with a remainder of 1
-console.log(8 % 3)
+console.log(8 % 3);
 // returns 2
 // This is because 3 * 2 is 6, with a remainder of 2 left if 3 goes into 8
-console.log(6 % 2)
+console.log(6 % 2);
 // returns 0
 // Because 6 can be exactly divided by 2
 
 // Test to see if something is even using remainder operator
-const isEven = n => n % 2 === 0
-console.log(isEven(8))
+const isEven = n => n % 2 === 0;
+console.log(isEven(8));
 // returns true
-console.log(isEven(11))
+console.log(isEven(11));
 // returns false
+//  --------------------------------------------------------------------
 
+// Numeric Separators
 
+// you can use the underscore like you would a comma for large numbers
+const diameter = 287_460_000_000;
+// the engine basically ignores the underscores, they are just for the developers' benefit
+
+const priceCents = 345_99;
+// easy way to show the dollars and cents
+
+// looks like a dollar ammount, but means 1500
+const transferFee = 15_00;
+
+// same value, but looks like 1,500; still means 1500
+const transferFee2 = 1_500;
+
+// You can't place an underscore at 1. THE BEGINING 2. THE END 3. BY A PERIOD
+const PI = 3.1415;
+
+console.log(Number('230_000'));
+// returns NaN
+// YOU SHOULD NOT USE THE UNDERSCORE IN AN API OR WHEN PARSING STRINGS
