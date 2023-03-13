@@ -51,4 +51,15 @@ console.log(Date.now())
 console.log(future.setFullYear(2040))
 console.log(future)
 // changes the initial variable's date
+// -----------------------------------------------------------------------
 
+// Operations with dates
+// You can convert a Date to a Number
+console.log(Number(future))
+
+const calcDaysPassed = (date1, date2) => Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+
+// math at the end of the function is converting the answer to days
+// 1000 milliseconds, 60 seconds, 60 minutes, 24 hours
+const days1 = calcDaysPassed(new Date(2037, 3, 14), future)
+console.log(days1)
