@@ -81,25 +81,27 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
-const formatMovementDate = function(date) {
-  const calcDaysPassed = (date1, date2) => Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+const formatMovementDate = function (date, locale) {
+  const calcDaysPassed = (date1, date2) =>
+    Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
-  const day = `${date.getDate()}`.padStart(2, 0);
-  const month = `${date.getMonth() + 1}`.padStart(2, 0);
-  const year = date.getFullYear();
+  // version of displaying the date before the Intl refactoring
+  // const day = `${date.getDate()}`.padStart(2, 0);
+  // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  // const year = date.getFullYear();
 
-  const daysPassed = calcDaysPassed(new Date(), date)
+  const daysPassed = calcDaysPassed(new Date(), date);
 
   if (daysPassed === 0) {
-    return "Today"
+    return 'Today';
   } else if (daysPassed === 1) {
-    return "Yesterday"
+    return 'Yesterday';
   } else if (daysPassed <= 7) {
-    return `${daysPassed} days ago`
+    return `${daysPassed} days ago`;
   } else {
-    return `${day}/${month}/${year}`
+    return Intl.DateTimeFormat(locale).format(date);
   }
-}
+};
 
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
@@ -111,7 +113,7 @@ const displayMovements = function (acc, sort = false) {
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const date = new Date(acc.movementsDates[i]);
-    const displayDate = formatMovementDate(date)
+    const displayDate = formatMovementDate(date, acc.locale);
 
     const html = `
       <div class="movements__row">
@@ -185,20 +187,6 @@ currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 100;
 
-// Experimenting with the internationlizing dates API
-const now = new Date();
-const options = {
-  hour: "numeric",
-  minute: "numeric",
-  day: "numeric",
-  month: "long",
-  // could also write "numeric", or "2-digit" for the month
-  year: "numeric",
-  weekday: "long"
-}
-labelDate.textContent = new Intl.DateTimeFormat("en-US", options).format(now)
-// to get the codes go to https://gist.github.com/mlconnor/1887156
-
 // Login handler function
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -216,14 +204,36 @@ btnLogin.addEventListener('click', function (e) {
     }`;
     containerApp.style.opacity = 100;
 
-    // Current date
+    // Current date and time using internationlizing dates API
     const now = new Date();
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = `${now.getHours()}`.padStart(2, 0)
-    const minute = `${now.getMinutes()}`.padStart(2, 0);
-    labelDate.textContent = `${day}/${month}/${year}, ${hour}: ${minute}`;
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      month: 'numeric',
+      // could also write "long", or "2-digit" for the month/weekday/etc
+      year: 'numeric',
+      // weekday: 'long',
+    };
+    // used to grab the location/language of the user based on their browser
+    // const locale = navigator.language;
+    // mine would be the language-country of "en-US"
+
+    // below is setting up the local using the locations provided in the made-up app users
+    const locale = currentAccount.locale;
+    labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(
+      now
+    );
+    // to get the codes go to https://gist.github.com/mlconnor/1887156
+
+    // Manual way to put in current date for reference:
+    // const now = new Date();
+    // const day = `${now.getDate()}`.padStart(2, 0);
+    // const month = `${now.getMonth() + 1}`.padStart(2, 0);
+    // const year = now.getFullYear();
+    // const hour = `${now.getHours()}`.padStart(2, 0);
+    // const minute = `${now.getMinutes()}`.padStart(2, 0);
+    // labelDate.textContent = `${day}/${month}/${year}, ${hour}: ${minute}`;
     // want to display the date in this format:
     // day/month/year
 
