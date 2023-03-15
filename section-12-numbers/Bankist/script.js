@@ -193,12 +193,34 @@ const updateUI = function (acc) {
 
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
+// timer must be global, because we need it when logging between different accounts
 
-// FAKE ALWAYS LOGGED IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// Log out timer
+const startLogoutTimer = function () {
+  // setTimer to 5 minutes
+  let time = 300;
+
+  const tick = function () {
+    const min = String(Math.floor(time / 60)).padStart(2, 0);
+    let sec = time % 60;
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // in each call, print the remaining time to the user interface
+    // when the time is done (0 seconds) stop timer and log out the user
+    if (time === 0) {
+      clearInterval(tick);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+    // decrease 1 second; will only decrease if time is greater than 0
+    time = time - 1;
+  };
+  // call tick immediately, then set an interval to call again every 1 sec
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
 
 // Login handler function
 btnLogin.addEventListener('click', function (e) {
@@ -254,6 +276,12 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    // Start the log out timer process
+    // check to see if a timer is running from a dif account, if so, stop it
+    if (timer) clearInterval(timer);
+    // start the timer for the current account
+    timer = startLogoutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -279,6 +307,10 @@ btnTransfer.addEventListener('click', function (e) {
     receiverAcc.movements.push(amount);
     receiverAcc.movementsDates.push(new Date().toISOString());
 
+    // Reset the timer (showing that the user is still active)
+    clearInterval(timer);
+    timer = startLogoutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -298,6 +330,10 @@ btnLoan.addEventListener('click', function (e) {
       // Add transfer date
       const currentDate = new Date().toISOString();
       currentAccount.movementsDates.push(currentDate);
+
+      // Reset the timer (showing that the user is still active)
+      clearInterval(timer);
+      timer = startLogoutTimer();
 
       // Update UI
       updateUI(currentAccount);
