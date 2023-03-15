@@ -17,3 +17,17 @@ const pizzaTimer = setTimeout(
 
 // You can cancel a timeout!
 if (ingredients.includes('PEOPLE!!!')) clearTimeout(pizzaTimer);
+// ---------------------------------------------------------------------
+
+// setInterval runs forever on the interval that you set
+setInterval(function () {
+    const now = new Date();
+    console.log(now);
+}, 10000)
+
+// Practice - making a clock with the hours, minutes and seconds
+setInterval(function () {
+    const now = new Date();
+    console.log(`${now.getHours()}:${now.getMinutes()} ${now.getSeconds()}`);
+    console.log()
+}, 1000)
