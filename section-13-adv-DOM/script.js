@@ -36,30 +36,31 @@ document.addEventListener('keydown', function (e) {
 
 // Selecting Elements
 // to apply CSS to the entire document, we must select the documentElement
-console.log(document.documentElement);
-console.log(document.head);
-console.log(document.body);
+// console.log(document.documentElement);
+// console.log(document.head);
+// console.log(document.body);
 const header = document.querySelector('.header');
 const allSections = document.querySelectorAll('.section');
-console.log(allSections);
+// console.log(allSections);
 document.getElementById('section--1');
 const allButtons = document.getElementsByTagName('button');
 // returns an HTML collection, rather than a node list
 // An HTML collection is known as a live collection, because if the DOM changes, the live collection changes automatically
-console.log(allButtons);
+// console.log(allButtons);
 document.getElementsByClassName('btn');
 
 // Creating and inserting elements
 // Programatic approach:
 // Below is an object that we can represent in our DOM list
 const message = document.createElement('div');
-message.classList.add('.cookie-message');
+// DON'T ADD THE PERIOD IN THE CLASS FOR classList
+message.classList.add('cookie-message');
 // message.textContent = "We use cookies for improved functionality of the website"
 message.innerHTML = `We use cookies for improved functionality of the website <button class="btn btn--close-cookie"> Got it! </button>`;
 // Below for first child of header
 // header.prepend(message);
 // Below for last child of header
-header.append(message);
+// header.append(message);
 // the append following the prepend, moves the element from the first to the last child
 // SO we can move elements via these methods, not just insert them
 // A DOM element can only exist in one place at a time
@@ -77,3 +78,28 @@ header.after(message);
 document
   .querySelector('.btn--close-cookie')
   .addEventListener('click', () => message.remove());
+
+// -----------------------------------------------------------
+// Styles lesson
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+message.style.color = 'white';
+
+// console logging the style will only work for inline styles that we set ourselves
+// console.log(message.style.color);
+
+// to grab styles that are set, but are not inline styles (so ones we set), we have to use the getComputedStyle method
+
+// console.log(getComputedStyle(message));
+
+// computed style is how the code appears on the page, even if we didn't give any specifications in the CSS file
+
+// using Number.parseInt because we want to add a number to a string
+// need to add ", 10" to the end of the parseInt method to signify that we are parsing to a base 10 number
+message.style.height =
+  Number.parseInt(getComputedStyle(message).height, 10) + 30 + 'px';
+
+// How to change variables in CSS using JS
+// The document in JS is equivalant to the root in CSS
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+// makes all CSS elements that used the --color-primary variable to orangered, instead of green
