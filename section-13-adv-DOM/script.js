@@ -101,7 +101,7 @@ message.style.height =
 
 // How to change variables in CSS using JS
 // The document in JS is equivalant to the root in CSS
-document.documentElement.style.setProperty('--color-primary', 'orangered');
+// document.documentElement.style.setProperty('--color-primary', 'orangered');
 // makes all CSS elements that used the --color-primary variable to orangered, instead of green
 
 // ---------------------------------------------------------
@@ -141,15 +141,52 @@ console.log(link.getAttribute('href'));
 // Data attributes are a special type of attribute that starts with "data"
 // the data attributes are always saved into the dataset object
 // Note that versionNumber, is the name we gave in the CSS doc, in camelCase
-console.log(logo.dataset.versionNumber)
+console.log(logo.dataset.versionNumber);
 
 // Classes
 // the class names below are just filler
-logo.classList.add("c", "second_class");
-logo.classList.remove("c");
-logo.classList.toggle("c");
-logo.classList.contains("c");
+logo.classList.add('c', 'second_class');
+logo.classList.remove('c');
+logo.classList.toggle('c');
+logo.classList.contains('c');
 
 // don't use this syntax
 // logo.className = "Jonas"
 // That method would overwrite any other styles and make it so the element can only have one class
+
+// Smooth scrolling button
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
+
+  console.log(
+    'height/width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // Scrolling
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+  // scrolls to the position of section1 variable
+  // NEED to make sure that you take the current scroll position in mind (the pageYOffset and pageXOffset)
+
+  // smoothing the scroll - Old school way
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: "smooth"
+  // });
+
+  // modern way for modern browsers
+  section1.scrollIntoView({behavior: "smooth"});
+});
