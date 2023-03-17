@@ -191,23 +191,63 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
-const headerAlert = function (e) {
-  alert("addEventListener: Hey! You're reading the header!");
+// const headerAlert = function (e) {
+//   alert("addEventListener: Hey! You're reading the header!");
 
-  // This will make it so it only triggers on the first mouseenter, as it will then be removed
-  h1.removeEventListener('mouseenter', headerAlert);
-};
+//   // This will make it so it only triggers on the first mouseenter, as it will then be removed
+//   h1.removeEventListener('mouseenter', headerAlert);
+// };
 
-// Types of Events and Event Handlers
-const h1 = document.querySelector('h1');
-h1.addEventListener('mouseenter', headerAlert);
-// As a reminder, there are many events that can trigger an eventListener, which can be researched on MDN
+// // Types of Events and Event Handlers
+// const h1 = document.querySelector('h1');
+// h1.addEventListener('mouseenter', headerAlert);
+// // As a reminder, there are many events that can trigger an eventListener, which can be researched on MDN
 
-// OLD, Not as good way, for reference
-// h1.onmousenter = function (e) {
-//   alert("onmouseenter: Hey! You're reading the header!")
-// }
+// // OLD, Not as good way, for reference
+// // h1.onmousenter = function (e) {
+// //   alert("onmouseenter: Hey! You're reading the header!")
+// // }
 
-// You can also remove an event listener with a timer
-setTimeout(() => h1.removeEventListener("mouseenter", headerAlert), 3000)
+// // You can also remove an event listener with a timer
+// setTimeout(() => h1.removeEventListener("mouseenter", headerAlert), 3000)
 
+// --------------------------------------------------------
+// Event Propagation in Practice
+
+// Creating a random color
+// create a random integer
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+// Create a random color utilizing the random integer formula
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+console.log(randomColor());
+
+// event listener for the nav links
+// The first nav link
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  // this always refers to the element that the event is attached to
+  this.style.backgroundColor = randomColor();
+});
+// all the nav links block, including "open account" button
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+});
+// entire navbar, including logo
+document.querySelector('.nav').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+});
+// adding ", true" at the end makes the app listen for the event during the Capture Phase.
+// This makes it happen first
+// set to false by default
+// capture is really only for legacy code
+
+// Note how clicking on the child element also bubbles up the color change to its parents as well
+// For all 3 handlers, the target event is the same
+// e.currentTarget is the same as the this keyword in ALL event handlers
+
+// to make sure that the event never bubbles to its parents, use e.stopPropagation(); ONLY the child you selected will do the event
+// YOU PROBABLY SHOULDN'T STOP PROPAGATION IN MOST CURCUMSTANCES
+
+// addEventListener is listening for events during the BUBBLING PHASE, NOT THE CAPTURE PHASE
+// This is because the capture phase is not usually useful in JS
