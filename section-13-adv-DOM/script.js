@@ -103,3 +103,53 @@ message.style.height =
 // The document in JS is equivalant to the root in CSS
 document.documentElement.style.setProperty('--color-primary', 'orangered');
 // makes all CSS elements that used the --color-primary variable to orangered, instead of green
+
+// ---------------------------------------------------------
+// Attributes
+const logo = document.querySelector('.nav__logo');
+// JS only creates attributes for standard HTML properties, such as alt and src
+console.log(logo.alt);
+console.log(logo.src);
+// JS won't create attributes automatically for something we create uniquely, such as the nonstandard, made-up "designer" property
+console.log(logo.designer);
+// returns undefined
+// to get the class name, you have to write the following format:
+console.log(logo.className);
+
+// updating the alt
+logo.alt = 'Beautiful minimalist logo';
+
+// Non-standard attributes
+// You can grab the attribute with the following syntax
+console.log(logo.getAttribute('designer'));
+
+// creating a non-standard attribute
+logo.setAttribute('company', 'Bankist');
+// the above creates an attribute for logo of "company" with the value of "Bankist"
+
+// absolute vs. relative value of attribute
+// for absolute value:
+console.log(logo.src);
+// for relative value of the attribute:
+console.log(logo.getAttribute('src'));
+
+const link = document.querySelector('.nav__link--btn');
+console.log(link.href);
+console.log(link.getAttribute('href'));
+
+// Data Attributes
+// Data attributes are a special type of attribute that starts with "data"
+// the data attributes are always saved into the dataset object
+// Note that versionNumber, is the name we gave in the CSS doc, in camelCase
+console.log(logo.dataset.versionNumber)
+
+// Classes
+// the class names below are just filler
+logo.classList.add("c", "second_class");
+logo.classList.remove("c");
+logo.classList.toggle("c");
+logo.classList.contains("c");
+
+// don't use this syntax
+// logo.className = "Jonas"
+// That method would overwrite any other styles and make it so the element can only have one class
