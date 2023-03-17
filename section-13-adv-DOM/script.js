@@ -188,5 +188,26 @@ btnScrollTo.addEventListener('click', function (e) {
   // });
 
   // modern way for modern browsers
-  section1.scrollIntoView({behavior: "smooth"});
+  section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+const headerAlert = function (e) {
+  alert("addEventListener: Hey! You're reading the header!");
+
+  // This will make it so it only triggers on the first mouseenter, as it will then be removed
+  h1.removeEventListener('mouseenter', headerAlert);
+};
+
+// Types of Events and Event Handlers
+const h1 = document.querySelector('h1');
+h1.addEventListener('mouseenter', headerAlert);
+// As a reminder, there are many events that can trigger an eventListener, which can be researched on MDN
+
+// OLD, Not as good way, for reference
+// h1.onmousenter = function (e) {
+//   alert("onmouseenter: Hey! You're reading the header!")
+// }
+
+// You can also remove an event listener with a timer
+setTimeout(() => h1.removeEventListener("mouseenter", headerAlert), 3000)
+
