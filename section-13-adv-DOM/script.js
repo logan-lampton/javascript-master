@@ -86,17 +86,48 @@ btnScrollTo.addEventListener('click', function (e) {
 // BETTER Event Delegation Methodology
 // 1. Add event listener to a common parent element
 // 2. In that event listener, determine what element originated the event
-document.querySelector(".nav__links").addEventListener("click", function(e) {
+document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
   // Matching strategy
   // Makes sure that not the entire navbar, only the links are part of the event listener
-  if(e.target.classList.contains("nav__link")) {
+  if (e.target.classList.contains('nav__link')) {
     const id = e.target.getAttribute('href');
-    document.querySelector(id).scrollIntoView({ behavior: 'smooth' })
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
-})
+});
 
+///////////////////////////////////////
+// DOM Traversing
+const h1 = document.querySelector('h1');
 
+// selecting child elements
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes);
+// Note: Nodes can be anything
+console.log(h1.children);
+// returns nodes that are part of the HTMLCollection
+h1.lastElementChild.style.color = 'white';
+// properties like .firstElementChild and .lastElementChild are built in
+
+// Going upwards, towards parent nodes and elements
+console.log(h1.parentNode);
+// returns header__title
+console.log(h1.parentElement);
+h1.closest('.header').style.background = 'var(--gradient-secondary)';
+
+// querySelector finds children; closest method finds parents - both no matter how far down or up in the DOM tree
+
+// Going sideways to siblings
+// JS only lets you select direct siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+// a way to get all the siblings of an element from accessing its parent
+console.log(h1.parentElement.children);
+
+// can spread into an array
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) el.style.transform = 'scale(0.5)';
+});
 
 // -----------------------------------------------------------
 // // Manipulating Elements Practice
