@@ -96,38 +96,59 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   }
 });
 
+// Tabbed component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+// The best practice is to add the eventListener to the parent of all the button elements
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+  // guard clause
+  if(!clicked) return
+  // remove active from the other tabs
+  tabs.forEach(t => t.classList.remove("operations__tab--active"))
+  // make the tab associated with the clicked button active
+  clicked.classList.add("operations__tab--active");
+  // Activate content area
+  document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add("operations__content--active");
+});
+
+// // A forEach loop works, but is bad practice as it would make copies of the callback function for each button and on a big website (ex 200 buttons) that it would slow down the page
+// tabs.forEach(t => t.addEventListener("click", () => console.log("DISPLAY TAB")))
+
 ///////////////////////////////////////
 // DOM Traversing
-const h1 = document.querySelector('h1');
+// const h1 = document.querySelector('h1');
 
-// selecting child elements
-console.log(h1.querySelectorAll('.highlight'));
-console.log(h1.childNodes);
-// Note: Nodes can be anything
-console.log(h1.children);
-// returns nodes that are part of the HTMLCollection
-h1.lastElementChild.style.color = 'white';
-// properties like .firstElementChild and .lastElementChild are built in
+// // selecting child elements
+// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.childNodes);
+// // Note: Nodes can be anything
+// console.log(h1.children);
+// // returns nodes that are part of the HTMLCollection
+// h1.lastElementChild.style.color = 'white';
+// // properties like .firstElementChild and .lastElementChild are built in
 
-// Going upwards, towards parent nodes and elements
-console.log(h1.parentNode);
-// returns header__title
-console.log(h1.parentElement);
-h1.closest('.header').style.background = 'var(--gradient-secondary)';
+// // Going upwards, towards parent nodes and elements
+// console.log(h1.parentNode);
+// // returns header__title
+// console.log(h1.parentElement);
+// h1.closest('.header').style.background = 'var(--gradient-secondary)';
 
-// querySelector finds children; closest method finds parents - both no matter how far down or up in the DOM tree
+// // querySelector finds children; closest method finds parents - both no matter how far down or up in the DOM tree
 
-// Going sideways to siblings
-// JS only lets you select direct siblings
-console.log(h1.previousElementSibling);
-console.log(h1.nextElementSibling);
-// a way to get all the siblings of an element from accessing its parent
-console.log(h1.parentElement.children);
+// // Going sideways to siblings
+// // JS only lets you select direct siblings
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
+// // a way to get all the siblings of an element from accessing its parent
+// console.log(h1.parentElement.children);
 
-// can spread into an array
-[...h1.parentElement.children].forEach(function (el) {
-  if (el !== h1) el.style.transform = 'scale(0.5)';
-});
+// // can spread into an array
+// [...h1.parentElement.children].forEach(function (el) {
+//   if (el !== h1) el.style.transform = 'scale(0.5)';
+// });
 
 // -----------------------------------------------------------
 // // Manipulating Elements Practice
