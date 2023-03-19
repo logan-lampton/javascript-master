@@ -105,13 +105,18 @@ const tabsContent = document.querySelectorAll('.operations__content');
 tabsContainer.addEventListener('click', function (e) {
   const clicked = e.target.closest('.operations__tab');
   // guard clause
-  if(!clicked) return
+  if (!clicked) return;
   // remove active from the other tabs
-  tabs.forEach(t => t.classList.remove("operations__tab--active"))
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  tabsContent.forEach(tc =>
+    tc.classList.remove('operations__content--active')
+  );
   // make the tab associated with the clicked button active
-  clicked.classList.add("operations__tab--active");
+  clicked.classList.add('operations__tab--active');
   // Activate content area
-  document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add("operations__content--active");
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
 });
 
 // // A forEach loop works, but is bad practice as it would make copies of the callback function for each button and on a big website (ex 200 buttons) that it would slow down the page
