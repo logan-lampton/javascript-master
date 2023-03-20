@@ -8,6 +8,12 @@ const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+const nav = document.querySelector('.nav');
+
 ///////////////////////////////////////
 // Modal window
 
@@ -97,9 +103,6 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 });
 
 // Tabbed component
-const tabs = document.querySelectorAll('.operations__tab');
-const tabsContainer = document.querySelector('.operations__tab-container');
-const tabsContent = document.querySelectorAll('.operations__content');
 
 // The best practice is to add the eventListener to the parent of all the button elements
 tabsContainer.addEventListener('click', function (e) {
@@ -108,15 +111,41 @@ tabsContainer.addEventListener('click', function (e) {
   if (!clicked) return;
   // remove active from the other tabs
   tabs.forEach(t => t.classList.remove('operations__tab--active'));
-  tabsContent.forEach(tc =>
-    tc.classList.remove('operations__content--active')
-  );
+  tabsContent.forEach(tc => tc.classList.remove('operations__content--active'));
   // make the tab associated with the clicked button active
   clicked.classList.add('operations__tab--active');
   // Activate content area
   document
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
+});
+
+// Menu fade animation
+nav.addEventListener('mouseover', function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = 0.5;
+    });
+    logo.style.opacity = 0.5;
+  }
+});
+
+nav.addEventListener('mouseout', function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const logo = link.closest('.nav').querySelector('img');
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = 1;
+    });
+
+    logo.style.opacity = 1;
+  }
 });
 
 // // A forEach loop works, but is bad practice as it would make copies of the callback function for each button and on a big website (ex 200 buttons) that it would slow down the page
