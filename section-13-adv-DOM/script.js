@@ -121,32 +121,24 @@ tabsContainer.addEventListener('click', function (e) {
 });
 
 // Menu fade animation
-nav.addEventListener('mouseover', function (e) {
+const handleHover = function (e, opacity) {
   if (e.target.classList.contains('nav__link')) {
     const link = e.target;
     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
     const logo = link.closest('.nav').querySelector('img');
 
     siblings.forEach(el => {
-      if (el !== link) el.style.opacity = 0.5;
+      if (el !== link) el.style.opacity = this;
     });
-    logo.style.opacity = 0.5;
+    logo.style.opacity = this;
   }
-});
+};
 
-nav.addEventListener('mouseout', function (e) {
-  if (e.target.classList.contains('nav__link')) {
-    const link = e.target;
-    const logo = link.closest('.nav').querySelector('img');
-    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+// passes the number as the opacity, as the "this" keyword
+// workaround as the event handler can only take one argument
+nav.addEventListener('mouseover', handleHover.bind(0.5));
 
-    siblings.forEach(el => {
-      if (el !== link) el.style.opacity = 1;
-    });
-
-    logo.style.opacity = 1;
-  }
-});
+nav.addEventListener('mouseout', handleHover.bind(1));
 
 // // A forEach loop works, but is bad practice as it would make copies of the callback function for each button and on a big website (ex 200 buttons) that it would slow down the page
 // tabs.forEach(t => t.addEventListener("click", () => console.log("DISPLAY TAB")))
