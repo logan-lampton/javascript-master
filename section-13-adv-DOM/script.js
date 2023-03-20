@@ -120,6 +120,9 @@ tabsContainer.addEventListener('click', function (e) {
     .classList.add('operations__content--active');
 });
 
+// // A forEach loop works, but is bad practice as it would make copies of the callback function for each button and on a big website (ex 200 buttons) that it would slow down the page
+// tabs.forEach(t => t.addEventListener("click", () => console.log("DISPLAY TAB")))
+
 // Menu fade animation
 const handleHover = function (e, opacity) {
   if (e.target.classList.contains('nav__link')) {
@@ -140,8 +143,16 @@ nav.addEventListener('mouseover', handleHover.bind(0.5));
 
 nav.addEventListener('mouseout', handleHover.bind(1));
 
-// // A forEach loop works, but is bad practice as it would make copies of the callback function for each button and on a big website (ex 200 buttons) that it would slow down the page
-// tabs.forEach(t => t.addEventListener("click", () => console.log("DISPLAY TAB")))
+// Sticky Navigation
+const initialCoords = section1.getBoundingClientRect();
+window.addEventListener('scroll', function () {
+  if(this.window.scrollY > initialCoords.top) {
+    nav.classList.add("sticky")
+  } else nav.classList.remove("sticky")
+});
+
+// scroll event is usually not very efficent
+// it fires constantly as people scroll, which can especially be taxing on phones
 
 ///////////////////////////////////////
 // DOM Traversing
