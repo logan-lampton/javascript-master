@@ -243,11 +243,23 @@ const slides = document.querySelectorAll('.slide');
 const slider = document.querySelector('.slider');
 const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
+const dotContainer = document.querySelector('.dots');
 
 let currentSlide = 0;
 const maxSlide = slides.length - 1;
 
 slider.style.overflow = 'visible';
+
+// dots at bottom of slider
+const createDots = function () {
+  slides.forEach(function (_, i) {
+    dotContainer.insertAdjacentHTML(
+      'beforeend',
+      `<button class="dots__dot" data-slide="${i}"></button>`
+    );
+  });
+};
+createDots();
 
 // change slide
 const goToSlide = function (slide) {
@@ -279,6 +291,20 @@ const previousSlide = function () {
 // button clicks on slider
 btnRight.addEventListener('click', nextSlide);
 btnLeft.addEventListener('click', previousSlide);
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowLeft') previousSlide();
+  // short-circuiting version for arrow right, below
+  e.key === 'ArrowRight' && nextSlide();
+});
+
+// dot click events
+dotContainer.addEventListener("click", function (e) {
+  if (e.target.classList.contains("dots__dot")) {
+    const slide = e.target.dataset.slide;
+    goToSlide(slide)
+  }
+})
 
 ///////////////////////////////////////
 // DOM Traversing
