@@ -248,28 +248,37 @@ let currentSlide = 0;
 const maxSlide = slides.length - 1;
 
 slider.style.overflow = 'visible';
-slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
-// The slides should be at the following X values: 0%, 100%, 200%, 300%
+
+// change slide
+const goToSlide = function (slide) {
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+  );
+};
+goToSlide(0);
 
 // going to the next slide
-btnRight.addEventListener('click', function () {
-  // make sure we don't go past the maxSlide forever iterating
+// prevent going to indexes without slides
+const nextSlide = function () {
   if (currentSlide === maxSlide) {
     currentSlide = 0;
   } else {
     currentSlide++;
   }
-  slides.forEach(
-    (s, i) => (s.style.transform = `translateX(${100 * (i - currentSlide)}%)`)
-  );
-});
+  goToSlide(currentSlide);
+};
 
-btnLeft.addEventListener("click", function () {
+// previous slide
+const previousSlide = function () {
   if (currentSlide <= 0) {
     currentSlide = maxSlide;
-  } else currentSlide--
-  slides.forEach((s, i) => s.style.transform = `translateX(${100 * (i - currentSlide)}%)`) 
-})
+  } else currentSlide--;
+  goToSlide(currentSlide);
+};
+
+// button clicks on slider
+btnRight.addEventListener('click', nextSlide);
+btnLeft.addEventListener('click', previousSlide);
 
 ///////////////////////////////////////
 // DOM Traversing
