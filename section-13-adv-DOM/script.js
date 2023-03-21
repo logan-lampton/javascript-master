@@ -261,6 +261,16 @@ const createDots = function () {
 };
 createDots();
 
+const activateDot = function (slide) {
+  const dots = document.querySelectorAll('.dots__dot');
+  dots.forEach(dot => dot.classList.remove('dots__dot--active'));
+
+  document
+    .querySelector(`.dots__dot[data-slide="${slide}"]`)
+    .classList.add('dots__dot--active');
+};
+activateDot(0);
+
 // change slide
 const goToSlide = function (slide) {
   slides.forEach(
@@ -278,6 +288,7 @@ const nextSlide = function () {
     currentSlide++;
   }
   goToSlide(currentSlide);
+  activateDot(currentSlide);
 };
 
 // previous slide
@@ -286,6 +297,7 @@ const previousSlide = function () {
     currentSlide = maxSlide;
   } else currentSlide--;
   goToSlide(currentSlide);
+  activateDot(currentSlide);
 };
 
 // button clicks on slider
@@ -299,12 +311,13 @@ document.addEventListener('keydown', function (e) {
 });
 
 // dot click events
-dotContainer.addEventListener("click", function (e) {
-  if (e.target.classList.contains("dots__dot")) {
+dotContainer.addEventListener('click', function (e) {
+  if (e.target.classList.contains('dots__dot')) {
     const slide = e.target.dataset.slide;
-    goToSlide(slide)
+    goToSlide(slide);
+    activateDot(slide);
   }
-})
+});
 
 ///////////////////////////////////////
 // DOM Traversing
