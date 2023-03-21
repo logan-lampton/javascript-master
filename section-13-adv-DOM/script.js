@@ -219,23 +219,57 @@ allSections.forEach(function (section) {
 // This is very good for performance
 const imgTargets = document.querySelectorAll('img[data-src]');
 
-const loadImg = function(entries, observer) {
+const loadImg = function (entries, observer) {
   const [entry] = entries;
-  if(!entry.isIntersecting) return;
+  if (!entry.isIntersecting) return;
   // replace src attribute with the data-src attribute
   entry.target.src = entry.target.dataset.src;
-  entry.target.addEventListener("load", function () {
-    entry.target.classList.remove("lazy-img");
-  })
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
   observer.unobserve(entry.target);
 };
 
 const imgObserver = new IntersectionObserver(loadImg, {
   root: null,
   threshold: 0,
-  rootMargin: "200px"
+  rootMargin: '200px',
 });
 imgTargets.forEach(img => imgObserver.observe(img));
+
+///////////////////////////////////////
+// Slider Component
+const slides = document.querySelectorAll('.slide');
+const slider = document.querySelector('.slider');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+
+let currentSlide = 0;
+const maxSlide = slides.length - 1;
+
+slider.style.overflow = 'visible';
+slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
+// The slides should be at the following X values: 0%, 100%, 200%, 300%
+
+// going to the next slide
+btnRight.addEventListener('click', function () {
+  // make sure we don't go past the maxSlide forever iterating
+  if (currentSlide === maxSlide) {
+    currentSlide = 0;
+  } else {
+    currentSlide++;
+  }
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - currentSlide)}%)`)
+  );
+});
+
+btnLeft.addEventListener("click", function () {
+  if (currentSlide <= 0) {
+    currentSlide = maxSlide;
+  } else currentSlide--
+  slides.forEach((s, i) => s.style.transform = `translateX(${100 * (i - currentSlide)}%)`) 
+})
 
 ///////////////////////////////////////
 // DOM Traversing
