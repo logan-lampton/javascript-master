@@ -239,86 +239,95 @@ imgTargets.forEach(img => imgObserver.observe(img));
 
 ///////////////////////////////////////
 // Slider Component
-const slides = document.querySelectorAll('.slide');
-const slider = document.querySelector('.slider');
-const btnLeft = document.querySelector('.slider__btn--left');
-const btnRight = document.querySelector('.slider__btn--right');
-const dotContainer = document.querySelector('.dots');
+const sliderComponent = function () {
+  const slides = document.querySelectorAll('.slide');
+  const slider = document.querySelector('.slider');
+  const btnLeft = document.querySelector('.slider__btn--left');
+  const btnRight = document.querySelector('.slider__btn--right');
+  const dotContainer = document.querySelector('.dots');
 
-let currentSlide = 0;
-const maxSlide = slides.length - 1;
+  let currentSlide = 0;
+  const maxSlide = slides.length - 1;
 
-slider.style.overflow = 'visible';
+  slider.style.overflow = 'visible';
 
-// dots at bottom of slider
-const createDots = function () {
-  slides.forEach(function (_, i) {
-    dotContainer.insertAdjacentHTML(
-      'beforeend',
-      `<button class="dots__dot" data-slide="${i}"></button>`
+  // Functions
+  // dots at bottom of slider
+  const createDots = function () {
+    slides.forEach(function (_, i) {
+      dotContainer.insertAdjacentHTML(
+        'beforeend',
+        `<button class="dots__dot" data-slide="${i}"></button>`
+      );
+    });
+  };
+
+  const activateDot = function (slide) {
+    const dots = document.querySelectorAll('.dots__dot');
+    dots.forEach(dot => dot.classList.remove('dots__dot--active'));
+
+    document
+      .querySelector(`.dots__dot[data-slide="${slide}"]`)
+      .classList.add('dots__dot--active');
+  };
+
+  // change slide
+  const goToSlide = function (slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
     );
+  };
+
+  // going to the next slide
+  // prevent going to indexes without slides
+  const nextSlide = function () {
+    if (currentSlide === maxSlide) {
+      currentSlide = 0;
+    } else {
+      currentSlide++;
+    }
+    goToSlide(currentSlide);
+    activateDot(currentSlide);
+  };
+
+  // previous slide
+  const previousSlide = function () {
+    if (currentSlide <= 0) {
+      currentSlide = maxSlide;
+    } else currentSlide--;
+    goToSlide(currentSlide);
+    activateDot(currentSlide);
+  };
+
+  // Initial function calls when page loads
+  const init = function () {
+    createDots();
+    goToSlide(0);
+    activateDot(0);
+  };
+  init();
+
+  // Event Handlers
+  // button clicks on slider
+  btnRight.addEventListener('click', nextSlide);
+  btnLeft.addEventListener('click', previousSlide);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') previousSlide();
+    // short-circuiting version for arrow right, below
+    e.key === 'ArrowRight' && nextSlide();
+  });
+
+  // dot click events
+  dotContainer.addEventListener('click', function (e) {
+    if (e.target.classList.contains('dots__dot')) {
+      const slide = e.target.dataset.slide;
+      goToSlide(slide);
+      activateDot(slide);
+    }
   });
 };
-createDots();
-
-const activateDot = function (slide) {
-  const dots = document.querySelectorAll('.dots__dot');
-  dots.forEach(dot => dot.classList.remove('dots__dot--active'));
-
-  document
-    .querySelector(`.dots__dot[data-slide="${slide}"]`)
-    .classList.add('dots__dot--active');
-};
-activateDot(0);
-
-// change slide
-const goToSlide = function (slide) {
-  slides.forEach(
-    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
-  );
-};
-goToSlide(0);
-
-// going to the next slide
-// prevent going to indexes without slides
-const nextSlide = function () {
-  if (currentSlide === maxSlide) {
-    currentSlide = 0;
-  } else {
-    currentSlide++;
-  }
-  goToSlide(currentSlide);
-  activateDot(currentSlide);
-};
-
-// previous slide
-const previousSlide = function () {
-  if (currentSlide <= 0) {
-    currentSlide = maxSlide;
-  } else currentSlide--;
-  goToSlide(currentSlide);
-  activateDot(currentSlide);
-};
-
-// button clicks on slider
-btnRight.addEventListener('click', nextSlide);
-btnLeft.addEventListener('click', previousSlide);
-
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'ArrowLeft') previousSlide();
-  // short-circuiting version for arrow right, below
-  e.key === 'ArrowRight' && nextSlide();
-});
-
-// dot click events
-dotContainer.addEventListener('click', function (e) {
-  if (e.target.classList.contains('dots__dot')) {
-    const slide = e.target.dataset.slide;
-    goToSlide(slide);
-    activateDot(slide);
-  }
-});
-
+sliderComponent();
 ///////////////////////////////////////
 // DOM Traversing
 // const h1 = document.querySelector('h1');
