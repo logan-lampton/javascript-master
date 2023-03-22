@@ -72,13 +72,24 @@ console.log(jonas.hasOwnProperty('species'));
 // Prototypal Inheritance on Built-in Objects
 
 // Object.prototype has many built in methods that can work on prototype objects through the prototypal inheritance
-console.log(jonas.__proto__.__proto__)
+console.log(jonas.__proto__.__proto__);
 // How to view the prototype function
-console.log(Person.prototype.constructor)
+console.log(Person.prototype.constructor);
 
-const arr = [3, 6, 4, 5, 2, 7, 9, 3]
+const arr = [3, 6, 4, 5, 2, 7, 9, 3, 3, 3, 3, 9, 6];
 // As seen, each array inherits all these methods from the Array.prototype constructor
-console.log(arr.__proto__)
+console.log(arr.__proto__);
 // Array.prototype's prototype is Object.prototype
 
+// We can add new methods to the Array constructor, which ALL arrays would inherit
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+// the below returns the arr array, with only the unique values (because it is making a new Set with that data)
+console.log(arr.unique());
 
+// Extending the prototype of a built in prototype is generally A BAD IDEA
+
+// You can view all the prototypes of a function using the following:
+console.dir(x => x + 1);
+// functions are objects and all objects have prototypes
