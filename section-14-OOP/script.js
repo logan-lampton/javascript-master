@@ -67,3 +67,18 @@ console.log(jonas.species);
 // returns Homo Sapiens
 console.log(jonas.hasOwnProperty('species'));
 // returns false
+
+// ///////////////////////////////////
+// Prototypal Inheritance on Built-in Objects
+
+// Object.prototype has many built in methods that can work on prototype objects through the prototypal inheritance
+console.log(jonas.__proto__.__proto__)
+// How to view the prototype function
+console.log(Person.prototype.constructor)
+
+const arr = [3, 6, 4, 5, 2, 7, 9, 3]
+// As seen, each array inherits all these methods from the Array.prototype constructor
+console.log(arr.__proto__)
+// Array.prototype's prototype is Object.prototype
+
+
