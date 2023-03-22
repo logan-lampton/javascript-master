@@ -12,9 +12,9 @@ const Person = function (firstName, birthYear) {
 
   // DON'T CREATE METHODS (example below) IN CONSTRUCTOR FUNCTIONS
   // It would generally slow down code a lot when used to construct a lot of objects
-  this.calcAge = function () {
-    console.log(new Date() - this.birthYear);
-  };
+  //   this.calcAge = function () {
+  //     console.log(new Date().getFullYear() - this.birthYear);
+  //   };
 };
 
 // calling the constructor function
@@ -36,3 +36,34 @@ console.log(matilda, jack);
 // Testing if something is an instance of the constructor function
 console.log(jonas instanceof Person);
 // returns true
+
+// ///////////////////////////////////
+// Prototypes
+console.log(Person.prototype);
+Person.prototype.calcAge = function () {
+  console.log(new Date().getFullYear() - this.birthYear);
+};
+
+// Example of prototypal inheritance
+jonas.calcAge();
+matilda.calcAge();
+jack.calcAge();
+
+// all objects have access to the methods and properties from its prototype
+
+// You can check the prototype of objects as such:
+console.log(jonas.__proto__);
+// the prototype of jonas is essentially the properties of the prototype constructor, Person
+
+// Person.prototype is NOT the prototype of Person, but it's what will be used as the prototype of all the objects contructed with the Person prototype function
+
+console.log(Person.prototype.isPrototypeOf(jonas));
+// returns true
+
+Person.prototype.species = 'Homo Sapiens';
+// The objects inherit the property
+// The won't OWN the properties, but have them through the prototype
+console.log(jonas.species);
+// returns Homo Sapiens
+console.log(jonas.hasOwnProperty('species'));
+// returns false
