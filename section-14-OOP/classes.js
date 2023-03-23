@@ -43,7 +43,7 @@ class PersonCl {
 
   // can add static methods with the static keyword
   static hello() {
-    console.log("Hello, friend! 😁")
+    console.log('Hello, friend! 😁');
   }
 }
 
@@ -109,3 +109,28 @@ PersonCl.hey();
 // jessica.hey();
 
 PersonCl.hello();
+
+// /////////////////////////////////////////////////
+// Object.create
+
+// use an object literal
+const PersonProto = {
+  calcAge() {
+    console.log(new Date().getFullYear() - this.birthYear);
+  },
+  // manual way of initializing the object
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+steven.name = 'Steven';
+steven.birthYear = 2002;
+steven.calcAge();
+console.log(steven);
+
+const sarah = Object.create(PersonProto);
+sarah.init('Sarah', 1979);
+console.log(sarah);
