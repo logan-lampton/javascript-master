@@ -134,3 +134,33 @@ console.log(steven);
 const sarah = Object.create(PersonProto);
 sarah.init('Sarah', 1979);
 console.log(sarah);
+
+// /////////////////////////////////////////////////
+// Inheritance Between "Classes" Constructor Functions
+
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+Person.prototype.calcAge = function () {
+  console.log(new Date().getFullYear() - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+// Object.create makes an empty object, so we need to make the connection between Student.prototype and Person.prototype before we start adding any methods, like the introduce method after this
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.constructor = Student;
+
+Student.prototype.introduce = function () {
+  console.log(`Hi, my name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student('Mike', 2006, 'Computer Science');
+console.log(mike);
+mike.introduce();
+console.log(mike.__proto__);
