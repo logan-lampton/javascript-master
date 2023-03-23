@@ -40,6 +40,11 @@ class PersonCl {
   get fullName() {
     return this._fullName;
   }
+
+  // can add static methods with the static keyword
+  static hello() {
+    console.log("Hello, friend! 😁")
+  }
 }
 
 const jessica = new PersonCl('Jessica Landrey', 1989);
@@ -87,6 +92,20 @@ account.latest = 600;
 console.log(account.movements);
 
 const walter = new PersonCl('Walter Cronchite', 1965);
-console.log(walter);
+// console.log(walter);
 
 // You don't have to use getters and setters, but they can help a lot with validations
+
+// /////////////////////////////////////////////////
+// Static Methods
+// methods ONLY AVAILABLE on the constructor, not their prototype objects
+
+// can add without the prototype syntax to JUST the constructor
+PersonCl.hey = function () {
+  console.log('Hey there 👋');
+};
+PersonCl.hey();
+// can't call on a constructor's prototype instances
+// jessica.hey();
+
+PersonCl.hello();
