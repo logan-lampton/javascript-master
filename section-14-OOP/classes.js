@@ -247,9 +247,11 @@ class Account {
   //   much better to use methods, than call properties on instances
   deposit(amount) {
     this.#movements.push(amount);
+    return this;
   }
   withdraw(amount) {
     this.deposit(-amount);
+    return this;
   }
   total() {
     let sum = 0;
@@ -260,6 +262,7 @@ class Account {
     if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log('Loan approved!');
+      return this;
     }
   }
   //   Private methods
@@ -294,3 +297,10 @@ console.log(acc1);
 // Private fields
 // Public methods
 // Private methods
+
+// //////////////////////////////////////////
+// Chaining Methods
+// as long as each method in the constructor has a return value, you can chain them
+acc1.deposit(300).deposit(500).withdraw(35).requestLoan(2500);
+
+console.log(acc1.getMovements());
