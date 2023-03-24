@@ -219,37 +219,46 @@ class Account {
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
+    this._pin = pin;
     // we can add any additional properity not passed in as a parameter, that we want
-    this.movements = [];
+    // _ is a convention to mark a variable as private
+    this._movements = [];
     this.locale = navigator.language;
 
     console.log(`Thanks for opening an account, ${this.owner}`);
   }
+  //   getter if preferred method
+  //   get movements() {
+  //     return this._movements;
+  //   }
+  // usually use methods that say get or set instead of actual getters and setters
+  getMovements() {
+    return this._movements;
+  }
   //   much better to use methods, than call properties on instances
   deposit(amount) {
-    this.movements.push(amount);
+    this._movements.push(amount);
   }
   withdraw(amount) {
     this.deposit(-amount);
   }
   total() {
     let sum = 0;
-    this.movements.forEach(mov => sum += mov)
+    this._movements.forEach(mov => (sum += mov));
     return sum;
   }
-//   approveLoan would be a private method using data encapsulation
-  approveLoan(val) {
+  // approveLoan would be a private method using data encapsulation
+  _approveLoan(val) {
     if (val <= this.total() * 5) {
-        return true;
+      return true;
     } else {
       return false;
     }
   }
   requestLoan(val) {
-    if(this.approveLoan(val)) {
-        this.deposit(val);
-        console.log("Loan approved!")
+    if (this._approveLoan(val)) {
+      this.deposit(val);
+      console.log('Loan approved!');
     }
   }
 }
@@ -260,6 +269,8 @@ acc1.deposit(120);
 // abstracts that the withdraw is a negative value
 acc1.withdraw(40);
 
-acc1.requestLoan(10)
+acc1.requestLoan(10);
+
+console.log(acc1.getMovements());
 
 console.log(acc1);
