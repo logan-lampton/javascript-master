@@ -216,14 +216,23 @@ jay.calcAge();
 // Another Class Example
 
 class Account {
+  //   Public fields (instances)
+  //   can be referenced by the this keyword
+  locale = navigator.language;
+
+  // Private fields
+  #movements = [];
+  #pin;
+
+  //   Public methods
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this._pin = pin;
+    this.#pin = pin;
     // we can add any additional properity not passed in as a parameter, that we want
     // _ is a convention to mark a variable as private
-    this._movements = [];
-    this.locale = navigator.language;
+    // this._movements = [];
+    // this.locale = navigator.language;
 
     console.log(`Thanks for opening an account, ${this.owner}`);
   }
@@ -233,32 +242,33 @@ class Account {
   //   }
   // usually use methods that say get or set instead of actual getters and setters
   getMovements() {
-    return this._movements;
+    return this.#movements;
   }
   //   much better to use methods, than call properties on instances
   deposit(amount) {
-    this._movements.push(amount);
+    this.#movements.push(amount);
   }
   withdraw(amount) {
     this.deposit(-amount);
   }
   total() {
     let sum = 0;
-    this._movements.forEach(mov => (sum += mov));
+    this.#movements.forEach(mov => (sum += mov));
     return sum;
   }
-  // approveLoan would be a private method using data encapsulation
-  _approveLoan(val) {
+  requestLoan(val) {
+    if (this.#approveLoan(val)) {
+      this.deposit(val);
+      console.log('Loan approved!');
+    }
+  }
+  //   Private methods
+  // Only works at all on Google Chrome for now
+  #approveLoan(val) {
     if (val <= this.total() * 5) {
       return true;
     } else {
       return false;
-    }
-  }
-  requestLoan(val) {
-    if (this._approveLoan(val)) {
-      this.deposit(val);
-      console.log('Loan approved!');
     }
   }
 }
@@ -269,8 +279,18 @@ acc1.deposit(120);
 // abstracts that the withdraw is a negative value
 acc1.withdraw(40);
 
-acc1.requestLoan(10);
+acc1.requestLoan(75);
 
 console.log(acc1.getMovements());
 
 console.log(acc1);
+
+// //////////////////////////////////////////
+// Private Class Fields
+
+// In OOP languages, properties are called fields
+
+// Public fields
+// Private fields
+// Public methods
+// Private methods
