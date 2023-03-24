@@ -194,3 +194,20 @@ const martha = new StudentCl('Martha Jones', 2003, 'Computer Science');
 console.log(martha);
 martha.introduce();
 martha.calcAge();
+
+// //////////////////////////////////////////
+// Object.create Inheritance Between "Classes"
+
+// makes StudentProto inherit from PersonProto
+const StudentProto = Object.create(PersonProto);
+
+StudentProto.init = function(firstName, birthYear, course) {
+    PersonProto.init.call(this, firstName, birthYear);
+    this.course = course;
+};
+
+// jay's prototype will inherit from both StudentProto and PersonProto
+const jay = Object.create(StudentProto);
+console.log(jay);
+jay.init("Jay", 2004, "Computer Science");
+jay.calcAge();
