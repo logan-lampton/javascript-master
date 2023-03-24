@@ -26,10 +26,14 @@ EV.prototype.chargeBattery = function (chargeTo) {
   this.charge = chargeTo;
 };
 
+// a child class can overwrite a method inherited from its parent
+// This is an example of polymorphism
 EV.prototype.accelerate = function () {
   this.speed += 20;
   this.charge -= 1;
-  console.log(`${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}`);
+  console.log(
+    `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}`
+  );
 };
 
 const tesla = new EV('Tesla', 95, 50);

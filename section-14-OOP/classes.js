@@ -164,3 +164,33 @@ const mike = new Student('Mike', 2006, 'Computer Science');
 console.log(mike);
 mike.introduce();
 console.log(mike.__proto__);
+
+// ////////////////////////////////////////
+// ES6 Inheritance Between Classes
+
+// use extends keyword to make the StudenCl class inherit the PersonCl class
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    // use the super keyword to make the constructor have the same prototype as PersonCl
+    // use the same parameters as the parent constructor
+    // super call NEEDS to happen first; it allows you to access the this keyword
+    super(fullName, birthYear);
+    this.course = course;
+  }
+  introduce() {
+    console.log(`Hi, my name is ${this.fullName} and I study ${this.course}`);
+  }
+  calcAge() {
+    const date = new Date().getFullYear()
+    console.log(
+      `I'm ${date - this.birthYear} years old, but I feel ${
+        date - this.birthYear + 10
+      } years old`
+    );
+  }
+}
+
+const martha = new StudentCl('Martha Jones', 2003, 'Computer Science');
+console.log(martha);
+martha.introduce();
+martha.calcAge();
