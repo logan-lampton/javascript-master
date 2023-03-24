@@ -181,7 +181,7 @@ class StudentCl extends PersonCl {
     console.log(`Hi, my name is ${this.fullName} and I study ${this.course}`);
   }
   calcAge() {
-    const date = new Date().getFullYear()
+    const date = new Date().getFullYear();
     console.log(
       `I'm ${date - this.birthYear} years old, but I feel ${
         date - this.birthYear + 10
@@ -201,13 +201,65 @@ martha.calcAge();
 // makes StudentProto inherit from PersonProto
 const StudentProto = Object.create(PersonProto);
 
-StudentProto.init = function(firstName, birthYear, course) {
-    PersonProto.init.call(this, firstName, birthYear);
-    this.course = course;
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
 };
 
 // jay's prototype will inherit from both StudentProto and PersonProto
 const jay = Object.create(StudentProto);
 console.log(jay);
-jay.init("Jay", 2004, "Computer Science");
+jay.init('Jay', 2004, 'Computer Science');
 jay.calcAge();
+
+// //////////////////////////////////////////
+// Another Class Example
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+    // we can add any additional properity not passed in as a parameter, that we want
+    this.movements = [];
+    this.locale = navigator.language;
+
+    console.log(`Thanks for opening an account, ${this.owner}`);
+  }
+  //   much better to use methods, than call properties on instances
+  deposit(amount) {
+    this.movements.push(amount);
+  }
+  withdraw(amount) {
+    this.deposit(-amount);
+  }
+  total() {
+    let sum = 0;
+    this.movements.forEach(mov => sum += mov)
+    return sum;
+  }
+//   approveLoan would be a private method using data encapsulation
+  approveLoan(val) {
+    if (val <= this.total() * 5) {
+        return true;
+    } else {
+      return false;
+    }
+  }
+  requestLoan(val) {
+    if(this.approveLoan(val)) {
+        this.deposit(val);
+        console.log("Loan approved!")
+    }
+  }
+}
+const acc1 = new Account('Jonas', 'EUR', 1111);
+
+// API calls
+acc1.deposit(120);
+// abstracts that the withdraw is a negative value
+acc1.withdraw(40);
+
+acc1.requestLoan(10)
+
+console.log(acc1);
